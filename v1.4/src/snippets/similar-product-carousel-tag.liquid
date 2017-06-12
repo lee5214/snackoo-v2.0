@@ -1,0 +1,80 @@
+{% comment %}
+Similar product carousel
+For settings go to Admin -> Theme -> Customize Theme -> Product page
+{% endcomment %}
+{% assign number_of_similar_products_to_show = settings.product_similar_number | plus:1 %}
+{% assign current_product = product %}
+{% assign current_product_tags = product.tags %}
+{% assign product_count = 1 %}
+
+<!-- Swiper -->
+<div class="swiper-container carousel carousel--product">
+  <div class="swiper-wrapper">
+    {% comment %}
+    Creating slides with similar products by tags
+    {% endcomment %}
+
+
+	  {% paginate collections.all.products by 1000 %}
+	  {% for product in collections.all.products %}
+		  {% assign tag_counter = 0 %}
+
+		  {% for tag in product.tags %}
+			  {% if current_product_tags contains tag  %}
+				  {%  assign tag_counter=tag_counter | plus:1 %}
+			  {% endif %}
+		  {% endfor %}
+		  {% if tag_counter >= 3 and product.handle != current_product.handle and product.first_available_variant.sku != settings.cart_special_sku and product_count < number_of_similar_products_to_show%}
+              <div class="swiper-slide similar-prod-owen">
+				  {% include 'product-item-grid' %}
+              </div>
+		  {% endif %}
+		  {% assign tag_counter = 0 %}
+	  {% endfor %}
+	  {% endpaginate %}
+
+
+
+
+{% comment %}
+	  {% paginate collections.all.products by 1000 %}
+	  {% for product in collections.all.products %}
+
+		  {% for tag in product.tags %}
+			  {% comment %}
+              Compare tags from current product with tag from product from other collections. Also check if it is used once
+			  {% endcomment %}
+
+			  {% if current_product_tags contains tag and double_tag == false %}
+
+				  {% if product.handle != current_product.handle and product.first_available_variant.sku != settings.cart_special_sku and product_count < number_of_similar_products_to_show %}
+
+                      <div class="swiper-slide similar-prod-owen">
+						  {% include 'product-item-grid' %}
+                      </div>
+
+					  {% assign product_count = product_count | plus:1 %}
+					  {% assign double_tag = true %}
+
+				  {% endif %}
+			  {% else %}
+				  {% assign double_tag = false %}
+			  {% endif %}
+		  {% endfor %}
+	  {% endfor %}
+	  {% endpaginate %}
+{% endcomment %}
+
+  </div>
+
+  <!-- Add Arrows -->
+
+  <div class="swiper-button-prev swiper-button-prev_similar carousel-button-prev" style="display: none;">
+    <span class="icon icon--arrow-left"></span>
+  </div>
+  <div class="swiper-active-slide" style="display: none;"></div>
+  <div class="swiper-button-next swiper-button-next_similar carousel-button-next" style="display: none;">
+    <span class="icon icon--arrow-right"></span>
+  </div>
+</div>
+

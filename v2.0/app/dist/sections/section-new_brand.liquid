@@ -1,0 +1,234 @@
+<style>
+	.flexslider-thumb--brands .slides{
+		width: 500px;
+		margin: 0 auto;
+		height: 400px;
+		z-index: 10;
+	}
+	.flexslider-thumb--brands .slides .slide{
+		height: 100%;
+	}
+	.flexslider-thumb--brands .flex-control-thumbs{
+		display: block;
+		margin: 0 auto;
+		padding: 20px;
+		height: auto;
+		width: auto;
+		position: absolute;
+		top: 0;
+		bottom: initial;
+		z-index: 1;
+		left: 50%;
+		transform: translatex(-50%);
+		column-count: 2;
+		column-gap: 500px;
+	}
+
+	.flexslider-thumb--brands .flex-control-thumbs li{
+		background: white;
+		border-radius: 0;
+		border: 1px solid black;
+		width: 300px;
+		height: 100px;
+		margin: 2px;
+
+	}
+
+	.flexslider-thumb--brands .flex-control-thumbs li img{
+		width: auto;
+		height: 100%;
+		margin: 0 auto;
+	}
+
+</style>
+
+
+	<!-- Flexslider -->
+{% assign home_sec_name = section.settings.sec_subtitle %}
+{% include 'homepage-section-subtitle' with home_sec_name %}
+<div class="flexslider flexslider-thumb flexslider-thumb--brands" data-autoplay="{{- autoplay -}}" data-autoplay-speed="{{- autoplaySpeed -}}" data-slideshow-effect="{{- slideshow_effect -}}">
+		<ul class="slides">
+			{% for block in section.blocks %}
+				{% capture slide_img %}{{ block.settings.image | img_url: '2000x' | format: 'jpg' }}{% endcapture %}
+				{% capture slide_thumb_img %}{{ block.settings.image_thumb | img_url: '150x' | format: 'jpg' }}{% endcapture %}
+
+				{% if slide_thumb_img contains 'no-image' %}
+					{% capture slide_fallback_thumb %}img_thumb_homepage_slide_{{ forloop.index }}.jpg{% endcapture %}
+				<li class="slide slide--{{ forloop.index }} js-img-holder-cover" data-thumb="{{ slide_fallback_thumb | asset_url }}">
+				{% else %}
+					<li class="slide slide--{{ forloop.index }} js-img-holder-cover" data-thumb="{{ slide_thumb_img }}">
+				{% endif %}
+
+				{% if slide_img contains 'no-image' %}
+					{% capture slide_fallback_img %}img_homepage_slide_{{ forloop.index }}.jpg{% endcapture %}
+					<img class="slide__image" src="{{ slide_fallback_img | asset_url }}" />
+				{% else %}
+					<img class="slide__image" src="{{ slide_img }}" alt="{{ block.settings.heading }}" />
+				{% endif %}
+
+				{% if block.settings.heading != blank %}
+					<div class="slide__info-wrapper">
+						<div class="slide__info-part">
+							<h1 class="heading--page slide__heading"><a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.heading }}">{{ block.settings.heading | upcase }}</a></h1>
+							<h2 class="subheading--page slide__subheading"><a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.subheading }}"><em>{{ block.settings.subheading }}</em></a></h2>
+						</div>
+						{% if block.settings.heading_add != blank and block.settings.subheading_add != blank %}
+							<div class="slide__info-part">
+								<h1 class="heading--page slide__heading"><a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.heading_add }}">{{ block.settings.heading_add | upcase }}</a></h1>
+								<h2 class="subheading--page slide__subheading"><a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.subheading_add }}"><em>{{ block.settings.subheading_add }}</em></a></h2>
+							</div>
+						{% endif %}
+					</div>
+				{% endif %}
+
+				{% if block.settings.price != blank and block.settings.price_desc != blank %}{% comment %} Price badge {%endcomment%}
+					{%- assign price_badge_pos = block.settings.price_bage_positionXY | replace: ',', ' ' | replace: ':', ' ' | replace: '%', ' ' | replace: 'px', ' ' -%}
+					{%- assign XY_coordinates = price_badge_pos | split: ' ' %}
+					<div class="slide__price-point" style="left: {{- XY_coordinates[0] -}}%; top: {{- XY_coordinates[1] -}}%;">
+						<a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.heading }}">
+							<span class="slide__price"><span class="money">{{ block.settings.price }}</span></span>
+							<span class="slide__desc"><em>{{ block.settings.price_desc }}</em></span>
+						</a>
+					</div>
+				{% endif %}{% comment %} End price badge {%endcomment%}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+
+{% schema %}
+{
+"name": "section-new_brand",
+"max_blocks": 6,
+	"settings": [
+	{
+	"type": "text",
+	"id": "sec_subtitle2",
+	"label": "title",
+	"info": "input a name for this sec"
+	},
+	{
+	"type": "select",
+	"id": "section-new_brand",
+	"label": "section-new_brand",
+	"options": [
+	{
+	"value": "fade",
+	"label": "Fade"
+	},
+	{
+	"value": "slide",
+	"label": "Slide"
+	}
+	],
+	"default": "fade"
+	},
+	{
+	"type": "checkbox",
+	"id": "section-new_brand_autoplay",
+	"label": "Autoplay"
+	},
+	{
+	"type": "text",
+	"id": "section-new_brand_time_animation",
+	"label": "Time for changing slides",
+	"default": "7000",
+	"info": "Works if autoplay is enabled. Time in milliseconds"
+	},
+	{
+	"type": "checkbox",
+	"id": "section-new_brand_zoom",
+	"label": "Stretch image with proportions to a slideshow size",
+	"default": true
+	},
+	{
+	"type": "text",
+	"id": "position_y",
+	"label": "Vertical position",
+	"default": "0",
+	"placeholder": "0",
+	"info": "To display slidshow below the header set the value above greater than 0 (default settings is margin-top: -233px)"
+	}
+	],
+	"blocks": [
+	{
+	"type": "slide",
+	"name": "Slide",
+	"settings": [
+
+	{
+	"type": "text",
+	"id": "heading",
+	"label": "Heading",
+	"default": "Tomato season"
+	},
+	{
+	"type": "text",
+	"id": "heading_add",
+	"label": "Additional heading",
+	"default": "Yes, <strong>Please<\/strong>!"
+		},
+		{
+		"type": "text",
+		"id": "subheading",
+		"label": "Subheading",
+		"default": "nutritious  delicious"
+		},
+		{
+		"type": "text",
+		"id": "subheading_add",
+		"label": "Additional subheading",
+		"default": "Mmmmm..."
+		},
+		{
+		"type": "url",
+		"id": "link",
+		"label": "Link to"
+		},
+		{
+		"type": "header",
+		"content": "Price Badge",
+		"info":   "Put data in the next two fields to display price badge in this slide"
+		},
+		{
+		"type": "text",
+		"id": "price",
+		"label": "Price",
+		"default": "$3.05"
+		},
+		{
+		"type": "text",
+		"id": "price_desc",
+		"label": "Price description",
+		"default": "start point"
+		},
+		{
+		"type": "text",
+		"id": "price_bage_positionXY",
+		"label": "Badge position X:Y",
+		"default": "50% 50%",
+		"placeholder": "50% 50%",
+		"info": "Values in the field above should be in percentage only"
+		},
+		{
+		"type": "image_picker",
+		"id": "image",
+		"label": "Image"
+		},
+		{
+		"type": "image_picker",
+		"id": "image_thumb",
+		"label": "Thumb image"
+		}
+		]
+		}
+		],
+		"presets": [
+		{
+		"name": "section-new_brand",
+		"category": "COLLECTIONS"
+		}
+		]
+	}
+{% endschema %}

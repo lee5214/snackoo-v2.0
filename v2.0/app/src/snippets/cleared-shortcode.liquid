@@ -1,0 +1,34 @@
+{%- comment -%} Clear shortcode version 2.0 {%- endcomment -%}
+
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[ <', '[<' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '> ]', '>]' -%}
+
+{%- comment -%} Strip span tags {%- endcomment -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[</span>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[<span>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '<span>]', ']' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '</span>]', ']' -%}
+
+{%- comment -%} Strip p tags {%- endcomment -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[</p>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[<p>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '<p>]', ']' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '</p>]', ']' -%}
+
+{%- comment -%} Strip div tags {%- endcomment -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[</div>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[<div>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '<div>]', ']' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '</div>]', ']' -%}
+
+{%- comment -%} Strip pre tags {%- endcomment -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[</pre>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[<pre>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '<pre>]', ']' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '</pre>]', ']' -%}
+
+{%- comment -%} Strip h1 tags {%- endcomment -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[</h1>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '[<h1>', '[' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '<h1>]', ']' -%}
+{%- assign cleared-shortcode = cleared-shortcode | replace: '</h1>]', ']' -%}

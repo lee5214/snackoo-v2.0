@@ -1,0 +1,479 @@
+{% assign GENERAL_FONT = settings.general_font | default:'Dosis' %}
+{% assign HEADING_FONT = settings.heading_font | default:'Dosis' %}
+{% assign HEADER_FONT = settings.header_font | default:'Dosis' %}
+{% assign NAV_FONT = settings.nav_font | default:'Dosis' %}
+{% assign SPECIAL_FONT = settings.special_font | default:'Dosis' %}
+
+{% assign GENERAL_FONT = '"' | append: GENERAL_FONT | append: '", ' | append: settings.general_font_bk %}
+{% assign HEADING_FONT = '"' | append: HEADING_FONT | append: '", ' | append: settings.heading_font_bk %}
+{% assign HEADER_FONT = '"' | append: HEADER_FONT | append: '", ' | append: settings.header_font_bk %}
+{% assign NAV_FONT = '"' | append: NAV_FONT | append: '", ' | append: settings.nav_font_bk %}
+{% assign SPECIAL_FONT = '"' | append: SPECIAL_FONT | append: '", ' | append: settings.special_font_bk %}
+
+body,
+.page-width.has-sidebar .column-container .row{
+  background-color: {{ settings.background_color }};
+}
+
+body, p, a, 
+.shortcode_banner .shortcode_banner_inside .shortcode_banner_content h3.secondary_font, 
+.shortcode_banner .shortcode_banner_inside .shortcode_banner_content h4.secondary_font, 
+.blog-list-wrapper .blog-list-item .blog-list-comment i span, 
+.swiper-slide .slider-content .slider-content-wrapper h1.secondary_font, 
+.swiper-slide .slider-content .slider-content-wrapper p.secondary_font {
+  font-family: {{ GENERAL_FONT }};
+  letter-spacing: {{ settings.general_font_spacing | plus:0 }}px;
+  font-weight: {{ settings.general_font_weight }};
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, 
+header.site-header .header-wrapper .nav .header-nav .menu-trigger .menu-title, 
+header.site-header .header-wrapper .tools ul li.cart-button .cart-desc, 
+.mm-menu .mm-listview > li a, .mm-navbar a, 
+.mm-navbar a, 
+.offcanvas_aside_right .offcanvas_minicart .widget_shopping_cart_content .cart_list li a, 
+.products .product .shop_product_metas h3 a, 
+.widget-area .widget.widget_products li a, 
+.cd-quick-view .cd-item-info .product_infos .cart .group_table label a, 
+.my_account_container .order-container table.shop_table tbody td.product-name a, 
+.shortcode_banner .shortcode_banner_inside .shortcode_banner_content h3.primary_font, 
+.shortcode_banner .shortcode_banner_inside .shortcode_banner_content h4.primary_font, 
+.page-header .list_shop_categories li a, 
+.offcanvas_search .suggestion_results .suggestion_item a .suggestion_titlediv, 
+.button, 
+.widget-area .widget.widget_mc4wp_form_widget table td input[type="submit"], 
+.swiper-slide .slider-content .slider-content-wrapper h1.primary_font, 
+.swiper-slide .slider-content .slider-content-wrapper p.primary_font,
+table.wishlist_table tbody td.product-name a {
+  font-family: {{ HEADING_FONT }};
+  letter-spacing: {{ settings.heading_font_spacing | plus:0  }}px;
+  font-weight: {{ settings.heading_font_weight }};
+  font-style: normal;
+}
+
+.page-header h1.page-title, 
+.offcanvas_aside_right .offcanvas_minicart .widget_shopping_cart_content .cart_list li a.remove {
+  font-family: {{ HEADER_FONT }};
+  text-transform: {{ settings.header_font_transform }};
+  letter-spacing: {{ settings.header_font_spacing | plus:0 }}px;
+  font-weight: {{ settings.header_font_weight }};
+  font-style: normal;
+}
+
+.mm-listview span small,
+.nav2 .menu-item span small,
+.mm-navbar .mm-title, 
+.language_currency ul li, 
+.language_currency ul li a {
+  font-family: {{ NAV_FONT }};
+  text-transform: {{ settings.nav_font_transform }};
+  letter-spacing: {{ settings.nav_font_spacing | plus:0 }}px;
+  font-weight: {{ settings.nav_font_weight }};
+  font-style: normal;
+  font-size: {{ settings.nav_font_size | plus:0 }}px;
+}
+
+.page-header {
+  margin-top: {{ settings.header_padding | times:2 | plus: settings.main_logo_height }}px;
+  margin-bottom: 10px;
+}
+
+{% if settings.shop_header_height != '' %}
+.page-header.shop {
+  height: {{ settings.shop_header_height | plus:0 }}px;
+  margin-bottom: 50px;
+  margin-top: 0;
+}
+
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  .page-header.shop {
+    height: {{ settings.shop_header_height | times:90 | divided_by:100 }}px;
+  }  
+}
+@media screen and (max-width: 39.9375em) {
+  .page-header.shop {
+    height: {{ settings.shop_header_height | times:80 | divided_by:100 }}px;
+  }
+}
+{% endif %}
+@media screen and (max-width: 39.9375em) {
+  .page-header.home {
+    margin-top: 130px;
+    margin-bottom: 0;
+  }  
+}
+
+/***************************************************************/
+/*  Content Width  *********************************************/
+/***************************************************************/
+
+{% if settings.general_max_width != '' %}
+.row {
+  max-width: {{ settings.general_max_width | divided_by: 16 | plus:2.85714286 }}rem;
+}
+{% endif %}
+
+/***************************************************************/
+/*  Color Styling  *********************************************/
+/***************************************************************/
+
+/****** Main Background *******/
+
+.offcanvas_overlay:after, .cd-cover-layer, .nl-overlay {
+  background: rgba({{ settings.main_color }},0.7);
+}
+
+header.site-header .header-wrapper .nav .header-nav .menu-trigger div,
+header.site-header .header-wrapper .tools ul li a .counter_number,
+.mm-listview span small::before,
+.nav2 .menu-item span small:before,
+.language_currency ul li span::before,
+.language_currency .currency_switcher li::before,
+.language_currency ul li a::before,
+.mm-listview .hr-menu-item hr,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_4 div span,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_4 div span:before,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_4 div span:after,
+.cd-search-trigger.search-form-visible::before,
+.page-header #breadcrumbs::before, .page-header #breadcrumbs::after,
+.button.btn1,
+.offcanvas_aside_right .offcanvas_minicart .widget_shopping_cart_content .cart_list li a.remove i,
+.widget-area .widget.widget_price_filter .ui-slider .ui-slider-handle,
+.widget-area .widget.widget_price_filter .ui-slider .ui-slider-range,
+.widget-area .widget.widget_product_tag_cloud a:hover,
+.widget-area .widget.widget_product_tag_cloud .active a,
+input[type="submit"],
+.products-carousel .carousel-title::after,
+.single_product_summary_upsell h2.products-upsells-title::after,
+.button,
+.button[disabled],
+button[type="submit"],
+.blog-content-area ul.post-categories li,
+.format-quote .entry-content blockquote,
+.blog-content-area .post_header_meta::before,
+.comments_section .comment-respond h3.comment-reply-title small a,
+.widget-area .widget.widget_calendar table td a,
+h2.shortcode_title::after,
+.with_thumb_icon, .no_thumb_icon,
+.widget-area .widget.widget_tag_cloud a:hover,
+.widget-area .widget.widget_tag_cloud .active a,
+.template-cart .entry-content .shopping-cart .cart-form table tbody td.product-remove .remove,
+.tp-loader.spinner1,
+.tp-loader.spinner2,
+.tp-loader.spinner3 .bounce1, .tp-loader.spinner3 .bounce2, .tp-loader.spinner3 .bounce3,
+.tp-loader.spinner4 .dot1, .tp-loader.spinner4 .dot2,
+table.wishlist_table tbody td.product-remove .remove,
+table.wishlist_table tbody td.product-remove .remove:hover,
+.toggle_simple .toggle_icon{
+  background-color: {{ settings.main_color }};
+}
+
+.button.btn2 {
+  background-color: transparent;
+}
+
+.button:hover, .button:focus,
+input[type="submit"]:hover,
+.button[disabled]:hover {
+  background-color: rgba(lighten({{ settings.main_color }}, 5),1);
+}
+
+.button.btn2:hover, input[type="submit"].btn2:hover {
+  background-color: rgba(lighten({{ settings.main_color }}, 5),1);
+  border-color: rgba(lighten({{ settings.main_color }}, 5),1);
+}
+
+.page-header h1.page-title,
+.mm-prev::before, .mm-next::after, .mm-arrow::after,
+.mm-menu .mm-navbar > *, .mm-menu .mm-navbar a,
+.page-header #breadcrumbs,
+.list_shop_categories span,
+.page-header .list_shop_categories li i.backtoall::before,
+.page-header .list_shop_categories.mobile li a i::before,
+.offcanvas_aside_right .offcanvas_minicart .cart-title,
+.offcanvas_aside_right .offcanvas_search .search-title,
+.page-header .list_shop_categories li span.counter,
+.offcanvas_aside_right .offcanvas_minicart .widget_shopping_cart_content .total strong,
+.products .add_to_wishlist::before, .products .yith-wcwl-wishlistaddedbrowse a::before, .products .yith-wcwl-wishlistexistsbrowse a::before,
+.widget-area .widget.widget_product_categories ul li span.count,
+.top_bar_shop_single .products-nav .product-btn > a i,
+label span,
+.top_bar_shop_single .return-link::before,
+.product_infos .box-share-master-container a i,
+.product_infos .eva-size-chart a i,
+.product_infos .add-to-wishlist a::before,
+#review_form_wrapper .comment-form .stars.selected a:not(.active)::before,
+.variation-select::after,
+.offcanvas_aside_left .social-icons li a::before,
+footer#site-footer .f-copyright .socials .social-icons a::before,
+label .required,
+.account-forms-container .account-tab-list .account-tab-item .account-tab-link,
+.account-forms-container .account-tab-list .account-tab-item.last .account-tab-link::before,
+.comment-form .required,
+.blog-content-area .entry-content .comment-link p::before,
+.blog-content-area .format-link .entry-title i,
+.blog-content-area .post_header_meta .post_date::before,
+.blog-content-area .post_header_meta .post_categories::before,
+.blog-content-area .post_header_meta .box-share-master-container i,
+#nav-below .nav-previous-title, #nav-below .nav-next-title,
+.widget-area .widget.widget_recent_comments ul li::before,
+.widget-area .widget.widget_recent_entries ul li::before,
+.blog-list-wrapper .blog-list-item .blog-list-comment i,
+.from_the_blog_item .from_the_blog_content_desc .blog-slider-meta span::before,
+.comments_section .comment-respond h3.comment-reply-title::before,
+.offcanvas_aside_right .offcanvas_sizechart .sizechart-title,
+.star-rating .spr-badge,
+.product-rating .spr-starrating,
+.product-tabs .spr-starrating,
+.select2-selection:after,
+.variations_form .selector-wrapper .single-option-selector:after,
+.shortcode_title_1,
+.product_infos .product-buttons .wishlist-form .add_to_wishlist:before,
+.slideshow-wrapper.style_2 .mega-title,
+.page .teams .subheading,
+.page .teams .position{
+  color: {{ settings.main_color }};
+}
+
+.mm-navbar,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_4 div,
+.page-header .list_shop_categories.desktop.active,
+.offcanvas_aside_right .offcanvas_minicart .widget_shopping_cart_content .total,
+.page-header .list_shop_categories.mobile li,
+.widget-area .widget.widget_product_categories ul li ul.children li::before,
+.widget-area .widget.widget_product_categories ul li ul.children li::after,
+.widget-area .widget.widget_product_tag_cloud a,
+.widget-area .widget.widget_product_tag_cloud a:hover,
+.top_bar_shop_single,
+.top_bar_shop_single .products-nav .product-btn,
+.top_bar_shop_single .products-nav .product-short,
+.cart .quantity input.qty,
+body[data-form-style="minimal"] .minimal-form-input label:after,
+.variation-select,
+footer#site-footer .f-copyright .socials .footer-divider,
+.btn2, input.btn2[type="submit"], input.btn2[type="button"],
+.my_account_container .myaccount_user .myaccount-navigation,
+.my_account_container .order-container .order-info-inside,
+.widget-area .widget.widget_calendar table,
+.widget-area .widget.widget_calendar table thead,
+.track-order-container .track_order_form,
+.product .spr-form-contact div[class^="spr-form-"]:after,
+.widget-area .widget.widget_tag_cloud a,
+.widget-area .widget.widget_tag_cloud a:hover,
+.widget-area .widget.widget_tag_cloud .active a,
+.template-cart .entry-content .shopping-cart .cart-collaterals,
+.product .cart .quantity input.qty,
+.shopping-cart .cart .quantity input.qty,
+.select2-selection,
+.variations_form .selector-wrapper .single-option-selector,
+.page-contact .map-title .map-border span,
+.offcanvas_minicart .cart_list .update{
+  border-color: {{ settings.main_color }};
+}
+
+.suggestion_results {
+  border-color: {{ settings.main_color }} !important;
+}
+
+.button-loader,
+.page-wishlist.loading:after{
+  border: 2px solid rgba({{ settings.main_color }}, 0.3);
+  border-bottom-color: {{ settings.main_color }};
+}
+
+.footer-instagram-section .instagram-pics li a::before,
+.widget-area .widget.null-instagram-feed ul li a::before {
+  -webkit-box-shadow: inset 0 0 0 0px {{ settings.main_color }};
+  -moz-box-shadow: inset 0 0 0 0px {{ settings.main_color }};
+  box-shadow: inset 0 0 0 0px {{ settings.main_color }};  
+}
+
+.footer-instagram-section .instagram-pics li a:hover::before {
+  -webkit-box-shadow: inset 0 0 0 10px {{ settings.main_color }};
+  -moz-box-shadow: inset 0 0 0 10px {{ settings.main_color }};
+  box-shadow: inset 0 0 0 10px {{ settings.main_color }};  
+}
+
+
+.widget-area .widget.null-instagram-feed ul li a:hover::before {
+  -webkit-box-shadow: inset 0 0 0 6px {{ settings.main_color }};
+  -moz-box-shadow: inset 0 0 0 6px {{ settings.main_color }};
+  box-shadow: inset 0 0 0 6px {{ settings.main_color }};  
+}
+
+/***************************************************************/
+/*  Links  *****************************************************/
+/***************************************************************/
+
+.suggestion_results .suggestion_item a .suggestion_titlediv .woos_sku,
+.suggestion_results .product .woos_sku,
+.empty-cart-box span,
+.empty-cart-offcanvas-box span,
+.page-header .list_shop_categories li a::before,
+.page-header .title-section.background--light .list_shop_categories .category_item a.category_item_link::before,
+.page-header .title-section.background--dark .list_shop_categories .category_item a.category_item_link::before,
+.mm-listview span small::before,
+.nav2 .menu-item span small:before,
+.widget-area .widget.widget_product_categories ul li > a::before,
+ul.tabs li a::before {
+  background-color: rgba({{ settings.main_color }},0.6);
+}
+
+/***************************************************************/
+/*  Box Shadow  ************************************************/
+/***************************************************************/
+
+/****** Navigation Button *******/
+
+header.site-header .header-wrapper .nav .header-nav .menu-trigger,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_2 div,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_3 div,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_4 div,
+.button.bshadow {
+  -webkit-box-shadow: 5px 5px 25px -5px rgba({{ settings.main_color }},.4);
+  -moz-box-shadow: 5px 5px 25px -5px rgba({{ settings.main_color }},.4);
+  box-shadow: 5px 5px 25px -5px rgba({{ settings.main_color }},.4);
+}
+
+
+
+header.site-header .header-wrapper .nav .header-nav .menu-trigger:hover,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_2:hover div,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_3:hover div,
+header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_4:hover div,
+.offcanvas_aside_right .offcanvas_minicart .widget_shopping_cart_content .cart_list li a.remove:hover i,
+.cart .entry-content form table tbody td.product-remove .remove:hover,
+#content table.wishlist_table.cart a.remove:hover
+{
+  -webkit-box-shadow: 2px 2px 6px 0px rgba({{ settings.main_color }}, 0.2);
+  -moz-box-shadow: 2px 2px 6px 0px rgba({{ settings.main_color }}, 0.2);
+  box-shadow: 2px 2px 6px 0px rgba({{ settings.main_color }}, 0.2);
+}
+
+@media screen and (max-width: 39.9375em) {
+  header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_2 div,
+  header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_3 div,
+  header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_4 div,
+  header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_2:hover div,
+  header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_3:hover div,
+  header.site-header .header-wrapper .nav .header-nav .menu-trigger.menu_trigger_4:hover div {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; 
+  }
+}
+
+
+/****** Counter *******/
+
+header.site-header .header-wrapper .tools ul li a .counter_number,
+.offcanvas_aside_right .offcanvas_minicart .widget_shopping_cart_content .cart_list li a.remove i,
+.cart .entry-content form table tbody td.product-remove .remove,
+#content table.wishlist_table.cart a.remove {
+  -webkit-box-shadow: 2px 2px 10px 0px rgba(darken({{ settings.main_color }},15), 0.4);
+  -moz-box-shadow: 2px 2px 10px 0px rgba(darken({{ settings.main_color }},15), 0.4);
+  box-shadow: 2px 2px 10px 0px rgba(darken({{ settings.main_color }},15), 0.4);
+}
+
+/****** Add to Cart Button *******/
+
+.products .product .product_after_shop_loop_buttons .button,
+.products .product .product_after_shop_loop_buttons .added_to_cart,
+.pagination ul li span.current,
+.top_bar_shop .catalog-ordering .shop-filter,
+.description-section .product_meta {
+  border: 1px solid {{ settings.main_color }};
+  background-color: rgba({{ settings.main_color }},0.15);
+  -webkit-box-shadow: 3px 3px 0px 0px rgba({{ settings.main_color }}, 0.15), inset 2px 2px 0px 0px rgba(255,255,255,1);
+  -moz-box-shadow: 3px 3px 0px 0px rgba({{ settings.main_color }}, 0.15), inset 2px 2px 0px 0px rgba(255,255,255,1);
+  box-shadow: 3px 3px 0px 0px rgba({{ settings.main_color }}, 0.15), inset 2px 2px 0px 0px rgba(255,255,255,1);
+}
+
+/****** Sticky Header *******/
+
+header.site-header.header--narrow {
+  -webkit-box-shadow: 5px 5px 45px -5px rgba(darken({{ settings.main_color }},15), 0.2);
+  -moz-box-shadow: 5px 5px 45px -5px rgba(darken({{ settings.main_color }},15), 0.2);
+  box-shadow: 5px 5px 45px -5px rgba(darken({{ settings.main_color }},15), 0.2);
+}
+
+header.site-header {
+  padding-top: {{ settings.header_padding | plus:0 }}px;
+  padding-bottom: {{ settings.header_padding | plus:0 }}px;
+}
+
+@media screen and (max-width: 39.9375em) {
+  header.site-header {
+    padding-top:25px;
+    padding-bottom:25px;
+  } 
+}
+
+header.site-header.header--narrow {
+  height: auto;
+}
+
+.template-product .page-header {
+  margin-top: {{ settings.header_padding | times:2 | plus: settings.main_logo_height }}px;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .template-product .page-header {
+    margin-top: 120px;
+  } 
+}
+
+/***************************************************************/
+/*  Page Loader Colors *****************************************/
+/***************************************************************/
+{% if settings.page_loader != '' %}
+#eva-loader-wrapper {
+  background: {{ settings.page_loader_bg }};
+}
+
+.eva-loader-1 {
+  background-color: {{ settings.page_loader_color }};
+}
+
+.eva-loader-2 {
+  border-top: 0.3em solid rgba({{ settings.page_loader_color }},.3);
+  border-right: 0.3em solid rgba({{ settings.page_loader_color }},.3);
+  border-bottom: 0.3em solid rgba({{ settings.page_loader_color }},.3);
+  border-left: 0.3em solid {{ settings.page_loader_color }};
+}
+
+.eva-loader-3 {
+  border-top-color: {{ settings.page_loader_color }};
+}
+.eva-loader-3:before {
+  border-top-color: {{ settings.page_loader_color }};
+  opacity: 0.5;
+}
+
+.eva-loader-3:after {
+  border-top-color: {{ settings.page_loader_color }};
+  opacity: 0.2;
+}
+
+.eva-loader-4 {
+  border: 3px solid {{ settings.page_loader_color }};
+}
+.eva-loader-4:before, .eva-loader-4:after {
+  background-color: {{ settings.page_loader_color }};
+}
+{% endif %}
+.slideshow__title .shadow,
+.slideshow__subtitle .shadow{
+  color:rgba(darken({{ settings.main_color }},20), 0.4);
+}
+.page .page-width .column-container .heading{
+  font-family: {{ SPECIAL_FONT }};
+}
+
+@media(max-width: 767px) {
+  .template-product .product .spr-form {
+    width: 100%;
+    padding-top: 20px;
+  }
+}

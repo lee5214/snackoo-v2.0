@@ -1,0 +1,32 @@
+{%- include 'google-fonts' -%}
+
+<script>
+  console.log('shopify-head is loaded');
+  var theme = {
+    strings: {
+      addToCart: "Add to cart",//{{ 'products.product.add_to_cart' | t | json }},
+      soldOut: "Sold out",//{{ 'products.product.sold_out' | t | json }},
+      unavailable: "Sorry, this product is unavailable. Please choose a different combination.",//{{ 'products.product.unavailable' | t | json }},
+      inStock: "in stock",//{{ 'products.product.in_stock' | t | json }},
+      outStock: "Out of stock",//{{ 'products.product.out_of_stock' | t | json }},
+      sale: "Sale!"//{{ 'products.general.sale' | t | json }}
+    },
+    moneyFormat: {{ shop.money_format | json }},
+    sale_percentages: 1,//{{ settings.shop_sale_percentages | json }},
+    cart_ajax: 1//{{ settings.product_addtocart_ajax | json }}
+  }
+  document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+</script>
+<!--[if (lte IE 9) ]>{{ 'match-media.min.js' | asset_url | script_tag }}<![endif]-->
+{%- if template.directory == 'customers' -%}
+<!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script><!--<![endif]-->
+<!--[if lte IE 9]><script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script><![endif]-->
+{%- endif -%}
+<!--[if (gt IE 9)|!(IE)]><!--><script src="//cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script><!--<![endif]-->
+<!--[if lte IE 9]><script src="//cdn.shopify.com/s/javascripts/currencies.js"></script><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'vendor(backup).js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+<!--[if lte IE 9]><script src="{{ 'vendor(backup).js' | asset_url }}"></script><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'api.jquery.js' | shopify_asset_url }}" defer="defer"></script><!--<![endif]-->
+<!--[if lte IE 9]><script src="{{ 'api.jquery.js' | shopify_asset_url }}"></script><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'theme(backup).js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+<!--[if lte IE 9]><script src="{{ 'theme(backup).js' | asset_url }}"></script><![endif]-->

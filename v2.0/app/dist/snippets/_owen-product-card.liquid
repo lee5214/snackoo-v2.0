@@ -1,0 +1,59 @@
+{% comment %}
+Snippet is used to show products in 'collection.liquid', 'similar-product-carousel-collection.liquid'
+{% endcomment %}
+<div class="product grid--in-row">
+	<div class="product__info">
+		<h4 class="product__title"><a href="{{ product.url }}"
+									  title="{{ product.title }}">{{ product.title | truncatewords: 12 }}</a></h4>
+
+		<span class="product__spec">
+			{% if product.type != blank %}
+				{{ product.type | link_to_type }}
+				&nbsp;|&nbsp;
+			{% endif %}
+
+			{% if product.available %}
+				{{ 'products.general.in_stock' | t }}
+			{% else %}
+				{{ 'products.general.out_stock' | t }}
+			{% endif %}
+
+			{% if settings.product_size_unit_enable %}
+				&nbsp;|&nbsp;
+				{% if product.first_available_variant.option1 != 'Default Title' %}
+					{{ product.first_available_variant.option1 }}
+				{% else %}
+					{{ product.first_available_variant.weight }}&nbsp;{{ product.first_available_variant.weight_unit }}
+				{% endif %}
+			{% endif %}
+    </span>
+	</div>
+	<!-- End product__info -->
+
+	<div class="img-holder" style="width:100%;height:190px;overflow: hidden;">
+		<a class="product__link {% unless product.available %}product--sold-out{% endunless %}" href="{{ product.url }}"
+		   title="{{ product.title }}">
+		</a>
+	</div>
+
+
+
+	{% comment %}
+	<span class="product__price-point">
+		<span class="product__price"><span class="money">{{ product.price | money }}</span></span><br>
+
+		{% if settings.collection_product_badge == 'price' %}
+			{% if product.compare_at_price_min > product.price %}
+				<span class="product__compare-price"><span
+							class="money">{{ product.compare_at_price_max | money }}</span></span>
+			{% endif %}
+		{% endif %}
+ 	</span>
+
+	{% if settings.collection_product_badge == 'badge' and product.compare_at_price_min > product.price %}
+		<span class="product__badge">{{ 'products.general.sale_badge_text' | t }}</span>
+	{% endif %}
+	{% endcomment %}
+
+
+</div> <!-- End product -->

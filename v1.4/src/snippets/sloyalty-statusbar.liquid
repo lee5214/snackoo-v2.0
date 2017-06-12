@@ -1,0 +1,41 @@
+{% comment %}
+NOTE:
+This file contains content used by S Loyalty (www.sloyalty.com) to power your loyalty program on your storefront for this theme. DO NOT edit or delete this file as it would lead to service interruptions. If you have any inquiries, please contact us at support@sloyalty.com.
+{% endcomment %}
+
+
+
+{% if customer %} {% assign digest = customer.id | append:customer.email | append:'1008c2fe-c532-47e0-924c-003f9788a4dc' | md5 %} {% endif %}
+
+<script type="text/javascript">
+window.sloyalty = window.sloyalty || {};
+window.sloyalty.shop = '{{ shop.permanent_domain }}';
+
+window.sloyalty.customer_id = '{% if customer %}{{ customer.id }}{% endif %}';
+window.sloyalty.digest = '{% if customer %}{{ digest }}{% endif %}';
+
+</script>
+
+
+
+
+  
+
+
+{% if customer %}
+{% assign digest = customer.id | append:customer.email | append:'1008c2fe-c532-47e0-924c-003f9788a4dc' | md5 %}
+
+<div class="sloyalty-loyalty-widget"
+     data-digest="{{ digest }}"
+     data-shop="{{ shop.permanent_domain }}"
+     data-customer="{{ customer.id }}"></div>
+{% else %}
+<div class="sloyalty-loyalty-widget"
+     data-shop="{{ shop.permanent_domain }}"></div>
+{% endif %}
+
+
+
+
+
+

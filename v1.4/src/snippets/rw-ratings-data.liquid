@@ -1,0 +1,13 @@
+{% comment %} Product and article ratings data - for AggregateRating rich snippets {% endcomment %}
+{% assign hasRatingData = true %}
+
+{% if template contains 'article' %}
+    {% assign current_object = article %}
+{% else %}
+    {% assign current_object = product %}
+{% endif %}
+
+{% case current_object.id %}
+        {% else %}
+        {% assign hasRatingData = false %}
+{% endcase %}

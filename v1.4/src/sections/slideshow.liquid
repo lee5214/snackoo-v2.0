@@ -1,0 +1,191 @@
+{% if section.blocks.size > 0 %}
+<style>
+  {% if slideshow_zoom == false %}
+  .flexslider-thumb--homepage .slide {
+  	background-size: initial;
+  }
+  {% endif %}
+</style>
+<!-- Flexslider -->
+<div class="flexslider flexslider-thumb flexslider-thumb--homepage">
+  <ul class="slides">
+    {% for block in section.blocks %}
+
+      <li class="slide slide--{{ forloop.index }} js-img-holder-cover" data-thumb="{{ block.settings.image_thumb | img_url: '150x' | format: 'jpg' }}">
+        {% comment %}to make whole img as a link{% endcomment %}
+        <a style="display:inline-block; width:100vw; height:100vh" href="{{ block.settings.link }}" title="{{ block.settings.heading_add }}"></a>
+          <img class="slide__image" src="{{ block.settings.image | img_url: '1500x1500' | format: 'jpg' }}" alt="{{ block.settings.heading }}" />
+
+          {% if block.settings.heading != blank %}
+            <div class="slide__info-wrapper">
+              <div class="slide__info-part">
+                <h1 class="heading--page slide__heading"><a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.heading }}">{{ block.settings.heading | initial }}</a></h1>
+                <h2 class="subheading--page slide__subheading"><a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.subheading }}"><em>{{ block.settings.subheading }}</em></a></h2>
+              </div>
+              <div class="slide__price-point">
+                <a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.heading }}">
+                  <span class="slide__price"><span class="money">{{ block.settings.price }}</span></span>
+                  <span class="slide__desc"><em>{{ block.settings.price_desc }}</em></span>
+                </a>
+              </div>
+              {% if block.settings.heading_add != blank and block.settings.subheading_add != blank %}
+              <div class="slide__info-part">
+                <h1 class="heading--page slide__heading"><a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.heading_add }}">{{ block.settings.heading_add | upcase }}</a></h1>
+                <h2 class="subheading--page slide__subheading"><a class="slide__link" href="{{ block.settings.link }}" title="{{ block.settings.subheading_add }}"><em>{{ block.settings.subheading_add }}</em></a></h2>
+              </div>
+              {% endif %}
+            </div>
+          {% endif %}
+      </li>
+
+    {% endfor %}
+  </ul>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var $homepageSliderContainer = $('.flexslider-thumb');
+
+    function initHomepageSlider() {
+      var $thumbs; 
+
+      $homepageSliderContainer.flexslider({
+        animation: "{{ settings.homepage_slideshow_effect }}",
+        controlNav: "thumbnails",
+        pauseOnHover: "true",
+        start: function(slider) {
+          $thumbs = $homepageSliderContainer.find('.flex-control-thumbs li');          
+          $($thumbs[slider.currentSlide]).addClass('active-thumb');
+        },
+        before: function(slider) {
+          $homepageSliderContainer.find('.active-thumb').removeClass('active-thumb');
+          $thumbs = $homepageSliderContainer.find('.flex-control-thumbs li');          
+          $($thumbs[slider.animatingTo]).addClass('active-thumb');
+        },
+
+        {% if settings.homepage_slideshow_autoplay %}
+          slideshow: true,
+          slideshowSpeed: {{ settings.homepage_slideshow_time_animation }}
+        {% else %}
+          slideshow: false
+        {% endif %}
+
+      });  
+    
+    }
+                            
+    if ( $homepageSliderContainer.flexslider && typeof $homepageSliderContainer.flexslider === 'function' ) {
+      initHomepageSlider();
+    } else {
+      require("{{ 'jquery.flexslider.min.js' | asset_url }}", initHomepageSlider);
+    }
+  });
+
+  
+    
+</script>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Slideshow",
+    "max_blocks": 9,
+    "settings": [
+      {
+        "type": "select",
+        "id": "slideshow_effect",
+        "label": "Slideshow effect",
+        "options": [
+          {
+            "value": "fade",
+            "label": "Fade"
+          },
+          {
+            "value": "slide",
+            "label": "Slide"
+          }
+        ],
+		"default": "fade"
+      },
+      {
+        "type": "checkbox",
+        "id": "slideshow_autoplay",
+        "label": "Autoplay"
+      },
+	  {
+        "type": "text",
+        "id": "slideshow_time_animation",
+        "label": "Time for changing slides",
+        "default": "7000",
+        "info": "Works if autoplay is enabled. Time in milliseconds"
+      },
+	  {
+        "type": "checkbox",
+        "id": "slideshow_zoom",
+        "label": "Stretch image with proportions to a slideshow size",
+		"default": true
+      }
+    ],
+
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+		  {
+            "type": "image_picker",
+            "id": "image_thumb",
+            "label": "Thumb image"
+          },
+
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link to"
+          },
+		  {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Tomato season"
+          },
+          {
+            "type": "text",
+            "id": "subheading",
+            "label": "Subheading",
+            "default": "nutritious  delicious"
+          },
+          {
+            "type": "text",
+            "id": "price",
+            "label": "Price",
+            "default": "$3.05"
+          },
+          {
+            "type": "text",
+            "id": "price_desc",
+            "label": "Price description",
+            "default": "start point"
+          },
+		  {
+            "type": "text",
+            "id": "heading_add",
+            "label": "Additional heading",
+            "default": "Yes, <strong>Please<\/strong>!"
+          },
+          {
+            "type": "text",
+            "id": "subheading_add",
+            "label": "Additional subheading",
+            "default": "Mmmmm..."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

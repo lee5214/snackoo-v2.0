@@ -1,0 +1,52 @@
+<style>
+  .search-container{
+    right: 0;
+    left: auto;
+  }
+  .search-container > form{
+    padding: 17px 0 18px 0;
+  }
+/*these two will hide search on click if change to .search-container.open*/
+  .search-container .form__field{
+    width: 210px;
+  }
+
+  .search-container > form >  input{
+    font-weight:600;
+    border: 1px solid #ded5c7;
+    border-bottom: 1px solid #ded5c7 !important;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+
+    padding: 5px 0 5px 10px !important;
+    font-size: 12px!important;
+    line-height: 19px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    height: 34px;
+    background: white;
+  }
+/**/
+  .search-container.open > form >  input::-webkit-input-placeholder{
+    color: gray;
+    font-weight: 500;
+  }
+</style>
+
+<!--add open so that it expands-->
+<div class="search-container open">
+  <form action="/search" method="GET" class="form form--search-primary" role="search">
+    {% if settings.search_type == 'products' %}
+      <input type="hidden" name="type" value="product" />
+    {% endif %}
+    <input style="width: 200px;margin-left:0;" type="text" name="q" class="form__field" placeholder="{{ 'layout.search.search_snackoo' | t }}" autocomplete="on">
+
+    <div class="icon icon--search js-icon--search">
+      <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="18" height="18" viewBox="0 0 18 18">
+        <path d="M17.950,16.536 L16.536,17.950 L12.900,14.314 C11.546,15.367 9.848,16.000 8.000,16.000 C3.582,16.000 0.000,12.418 0.000,8.000 C0.000,3.582 3.582,-0.000 8.000,-0.000 C12.418,-0.000 16.000,3.582 16.000,8.000 C16.000,9.848 15.367,11.546 14.314,12.900 L17.950,16.536 ZM8.000,2.000 C4.686,2.000 2.000,4.686 2.000,8.000 C2.000,11.314 4.686,14.000 8.000,14.000 C11.314,14.000 14.000,11.314 14.000,8.000 C14.000,4.686 11.314,2.000 8.000,2.000 ZM8.000,6.000 L8.000,4.000 C10.209,4.000 12.000,5.791 12.000,8.000 L10.000,8.000 C10.000,6.895 9.105,6.000 8.000,6.000 Z"/>
+      </svg>
+    </div>
+    <button type="submit" class="btn btn--submit" value=""></button>
+  </form>
+</div>

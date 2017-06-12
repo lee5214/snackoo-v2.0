@@ -1,0 +1,88 @@
+<style>
+	.header-top-banner {
+		font-size: 10px;
+		line-height: 12px;
+		font-weight: 700;
+		letter-spacing: .1em;
+		padding-left: calc(100vw / 2 - 944px / 2);
+		padding-right: calc(100vw / 2 - 944px / 2);
+		box-sizing: border-box;
+		width: 100%;
+		height: 33px;
+		position: absolute;
+		border-bottom: solid 1px #ded5c7;
+		z-index: 6;
+		text-transform: uppercase;
+	}
+
+	.header-top-banner > .header-top-slogan {
+		margin: 10px auto;
+		display: block;
+		float: left;
+		text-align: left;
+	}
+
+	#cart-open-btn {
+		float: right;
+		right: 7px;
+		z-index: 101;
+		top: 0;
+		width: 100px;
+		height: 100%;
+		position: relative;
+	/ / margin-right: calc(100 vw / 2 - 944 px / 2);
+	}
+	#cart-open > .cart-total{
+		margin-top: -4px;
+		line-height: 20px;
+		width: 20px;
+		display: inline-block;
+		margin-right: 28px;
+	}
+	#cart-open-btn > #cartCount {
+		top: 4px;
+		right: -5px;
+	}
+
+	#cart-open-btn > .icon--cart {
+		display: block;
+		position: absolute;
+		top: 5px;
+		right: 4px;
+	}
+
+	.header-top-banner .money{
+		font-size: 16px;
+		margin: 10px auto;
+		display: block;
+		color: #f06060;
+	}
+</style>
+
+<div class="header-top-banner">
+	<div class="header-top-slogan">
+		<span>FREE SHIPPING ON ALL ORDERS $49+</span>
+	</div>
+	<div class="header-top-banner-section">
+
+		<!--combine with home-cart-drawer-->
+		<button id="cart-open-btn" class="cart-open-btn" type="button">
+          <span class="cart-total">
+            <span class="money">{{ cart.total_price | money }}</span>
+          </span>
+			<span class="icon icon--cart">
+            <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+				 preserveAspectRatio="xMidYMid" width="16" height="20" viewBox="0 0 16 20">
+              <path d="M14.000,20.000 L2.000,20.000 C0.895,20.000 -0.000,19.105 -0.000,18.000 L-0.000,7.000 C-0.000,5.896 0.895,5.000 2.000,5.000 L4.000,5.000 L4.000,4.000 C4.000,1.791 5.791,0.000 8.000,0.000 C10.209,0.000 12.000,1.791 12.000,4.000 L12.000,5.000 L14.000,5.000 C15.105,5.000 16.000,5.896 16.000,7.000 L16.000,18.000 C16.000,19.105 15.105,20.000 14.000,20.000 ZM10.000,4.000 C10.000,2.895 9.105,2.000 8.000,2.000 C6.895,2.000 6.000,2.895 6.000,4.000 L6.000,5.000 L10.000,5.000 L10.000,4.000 ZM14.000,8.000 C14.000,7.448 13.552,7.000 13.000,7.000 L3.000,7.000 C2.448,7.000 2.000,7.448 2.000,8.000 L2.000,17.000 C2.000,17.552 2.448,18.000 3.000,18.000 L13.000,18.000 C13.552,18.000 14.000,17.552 14.000,17.000 L14.000,8.000 ZM12.000,17.000 C11.448,17.000 11.000,16.552 11.000,16.000 L11.000,13.000 C11.000,12.448 11.448,12.000 12.000,12.000 C12.552,12.000 13.000,12.448 13.000,13.000 L13.000,16.000 C13.000,16.552 12.552,17.000 12.000,17.000 Z"
+					class="cls-1"/>
+            </svg>
+          </span>
+
+			<span id="cartCount" class="cart-count">0</span>
+			<span class="fallback-text">{{ 'layout.cart.open_cart' | t }}</span>
+		</button>
+
+		{% include 'customer_account' %}
+	</div>
+
+</div>

@@ -1,0 +1,69 @@
+<style>
+	.flexslider-thumb--brands .slides{
+		width: 500px;
+		margin: 0 auto;
+		height: 400px;
+		z-index: 10;
+	}
+	.flexslider-thumb--brands .slides .slide{
+		height: 100%;
+	}
+	.flexslider-thumb--brands .flex-control-thumbs{
+		display: block;
+		margin: 0 auto;
+		padding: 20px;
+		height: auto;
+		width: auto;
+		position: absolute;
+		top: 0;
+		bottom: initial;
+		z-index: 1;
+		left: 50%;
+		transform: translatex(-50%);
+		column-count: 2;
+		column-gap: 500px;
+	}
+
+	.flexslider-thumb--brands .flex-control-thumbs li{
+		background: white;
+		border-radius: 0;
+		border: 1px solid black;
+		width: 300px;
+		height: 100px;
+		margin: 2px;
+
+	}
+
+	.flexslider-thumb--brands .flex-control-thumbs li img{
+		width: auto;
+		height: 100%;
+		margin: 0 auto;
+	}
+
+</style>
+
+
+<!-- Flexslider -->
+<div class="flexslider flexslider-thumb flexslider-thumb--brands" data-autoplay="{{- autoplay -}}" data-autoplay-speed="{{- autoplaySpeed -}}" data-slideshow-effect="{{- slideshow_effect -}}">
+	<ul class="slides">
+		<li class="slide slide--{{ forloop.index }} js-img-holder-cover" data-thumb="{{ settings.nav_brand1 | img_url: '480x' | format: 'png' }}">
+			<img class="slide__image" src="{{ settings.nav_brand1 | img_url: '960x' | format: 'png' }}" />
+		</li>
+		<li class="slide slide--{{ forloop.index }} js-img-holder-cover" data-thumb="{{ settings.nav_brand2 | img_url: '480x' | format: 'png' }}">
+			<img class="slide__image" src="{{ settings.nav_brand2 | img_url: '960x' | format: 'png' }}" />
+		</li>
+		<li class="slide slide--{{ forloop.index }} js-img-holder-cover" data-thumb="{{ settings.nav_brand3 | img_url: '480x' | format: 'png' }}">
+			<img class="slide__image" src="{{ settings.nav_brand3 | img_url: '960x' | format: 'png' }}" />
+		</li>
+		<li class="slide slide--{{ forloop.index }} js-img-holder-cover" data-thumb="{{ settings.nav_brand4 | img_url: '480x' | format: 'png' }}">
+			<img class="slide__image" src="{{ settings.nav_brand4 | img_url: '960x' | format: 'png' }}" />
+		</li>
+		<li class="slide slide--{{ forloop.index }} js-img-holder-cover" data-thumb="{{ settings.nav_brand5 | img_url: '480x' | format: 'png' }}">
+			<img class="slide__image" src="{{ settings.nav_brand5 | img_url: '960x' | format: 'png' }}" />
+		</li>
+		<li class="slide slide--{{ forloop.index }} js-img-holder-cover" data-thumb="{{ settings.nav_brand6 | img_url: '480x' | format: 'png' }}">
+			<img class="slide__image" src="{{ settings.nav_brand6 | img_url: '960x' | format: 'png' }}" />
+		</li>
+
+	</ul>
+</div>

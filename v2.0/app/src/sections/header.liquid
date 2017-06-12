@@ -1,0 +1,141 @@
+{%- if section.settings.color_header_bg -%}
+		<style>
+		@media (min-width: 769px) {
+		  .header {
+				background-color: {{-section.settings.color_header_bg-}};
+			}
+		}
+		</style>
+{%- endif -%}
+	
+{% if section.settings.fixed_bar_enable %}
+      {% include 'additional-mobile-menu' %}
+{% endif %}
+
+  {% assign current_page_title = page_title | handle %}
+
+	{% comment %}
+    Snippet for header with navigation and shopping cart
+    For setting go to Admin -> Theme -> Customize Theme -> Header
+    {% endcomment %}
+    <header class="header 
+		{% if template == 'index' and section.settings.transparent_home_enable %}header--clear{% endif %}
+		{% if template == 'product' and product.featured_image.size > 0 %} header--clear{% endif %} 
+		{% if current_page_title == 'landing-page' or template == 'cart' or section.settings.fixed_header == false %} header--fixed-off{% endif %}">
+			<div class="header-wrapper">
+
+
+        {% comment %} Dropdown for currency {% endcomment %}
+        {% include 'currency-picker' %}
+
+
+        <style>
+            .header{
+				width: 100%;
+				position: fixed;
+				left: 0;
+                top: 0;
+            }
+            .header .fixed{
+                          transform: translate3d(0, 0, 0) !important;
+                      }
+			.header-wrapper{
+				//height: 145px;
+				background: #f8eedd;
+
+			}
+
+			.drawer__wrapper{
+				float: left;
+			}
+
+
+        </style>
+
+		{% include 'header-top-banner' %}
+        <!-- *** Menu *** -->
+		{% include 'header-menu' %}
+        <!-- *** End menu *** -->
+
+        <!-- *** Shopping cart *** -->
+		{% include 'home-cart-drawer' %}
+        <!-- *** End shopping cart *** -->
+
+      </div>
+	  <!-- end header-wrapper -->
+    </header>
+
+    {% schema %}
+      {
+        "name": "Header",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Fixed header"
+          },
+          {
+            "type": "checkbox",
+            "id": "fixed_header",
+            "label": "Use a fixed header",
+            "default": true
+          },
+
+          {
+            "type": "header",
+            "content": "Mega menu for collections (desktop layout)"
+          },
+		      {
+            "type": "link_list",
+            "id": "collection_link",
+            "label": "Navigation link with collection"
+          },
+          {
+            "type": "checkbox",
+            "id": "main_menu_collection_enable",
+            "label": "Use image and description",
+            "info": "Image and description will be taken from the collection"
+          },
+          {
+            "type": "text",
+            "id": "main_menu_collections",
+            "label": "Collections for the collection mega menu",
+            "info": "Separated with commas"
+          },
+          {
+            "type": "header",
+            "content": "Fixed top bar for mobile devices"
+          },
+          {
+            "type": "checkbox",
+            "id": "fixed_bar_enable",
+            "label": "Show fixed top bar"
+          },
+          {
+            "type": "checkbox",
+            "id": "fixed_bar_search_enable",
+            "label": "Show search icon"
+          },
+          {
+            "type": "link_list",
+            "id": "fixed_bar_links",
+            "label": "Links",
+            "info": "Max 4 links"
+          },
+          {
+            "type": "header",
+            "content": "Header styling"
+          },
+          {
+            "type": "checkbox",
+            "id": "transparent_home_enable",
+            "label": "Home page header background transparent",
+            "default": true
+          },
+          {
+             "type":"color",
+             "id":"color_header_bg",
+             "label":"Header background color"
+          }
+        ]
+      }
+    {% endschema %}

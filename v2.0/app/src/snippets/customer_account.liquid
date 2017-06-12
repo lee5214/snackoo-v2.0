@@ -1,0 +1,181 @@
+
+<style>
+	.nav-list__dropdown{
+		visibility: hidden;
+	}
+	.nav-list__item:hover .nav-list__dropdown{
+		visibility: visible;
+		//color: green;
+		width: 200px;
+		background: white;
+	}
+	.nav-list__dropdown > .nav-list__dropdown:hover {
+		color:red;
+	}
+
+	.header-top-banner-section {
+		right: 0;
+		//margin-left: calc(100vw / 2 - 944px / 2 + 230px);
+		//width: 200px;
+		height: 100%;
+	//overflow: hidden;
+	}
+	.header-top-banner-section > .nav-list__item{
+		//background:red;
+		width: 100px;
+		height: 100%;
+		float: right;
+	}
+	.header-top-banner-section > .nav-list__item > .nav-list__link{
+		font-size: 12px;
+		margin: 10px auto;
+		display: block;
+		text-transform: capitalize;
+	}
+
+</style>
+
+
+
+
+{% if shop.customer_accounts_enabled %}
+
+	{% if customer %}
+		<div class="nav-list__item has-dropdown {% if template contains 'customers' %}active {% endif %}">
+			<div class="customer_account_button">
+				<a class="nav-list__link" href="/account">{{ 'layout.menu.view_account' | t }}</a>
+			</div>
+			<!-- Secondary menu level -->
+			<ul class="nav-list__dropdown nav-list__dropdown--secondary">
+				<li class="nav-list__item">
+					<a class="nav-list__link" href="/account">{{ 'layout.menu.orders' | t }}</a>
+				</li>
+				<li class="nav-list__item">
+					<a class="nav-list__link" href="/account/addresses" title="{{ 'layout.menu.addresses' | t }}">{{ 'layout.menu.addresses' | t }}</a>
+				</li>
+				{% if settings.wishlist_enable %}
+					<li class="nav-list__item">
+						<a class="nav-list__link" href="/pages/wishlist" title="{{ 'layout.menu.wishlist' | t }}">{{ 'layout.menu.wishlist' | t }}</a>
+					</li>
+				{% endif %}
+				<li class="nav-list__item nav-list__item--logout-desktop">
+					<a class="nav-list__link" href="/account/logout"  title="{{ 'customer.login.logout' | t }}">{{ 'customer.login.logout' | t }}</a>
+				</li>
+			</ul>
+		</div>
+<!--		<li class="nav-list__item nav-list__item--logout">
+			<a class="nav-list__link" href="/account/logout" title="{{ 'customer.login.logout' | t }}">{{ 'customer.login.logout' | t }}</a>
+
+		</li>
+		-->
+	{% else %}
+
+{% comment %}
+		<div class="nav-list__item nav-list__item--creat-account has-dropdown">
+			<div class="customer_account_button">
+				<a class="nav-list__link" href="#">{{ 'layout.menu.create_account' | t }}</a>
+			</div>
+			<!-- Secondary menu level -->
+			<ul class="nav-list__dropdown">
+				<li class="nav-list__item">
+					<div class="form-wrapper">
+						{% form 'create_customer', class: 'form form--inverse form-validation' %}
+
+						<div class="form__row">
+							<label class="label-hide" for="first_name">{{ 'customer.general.first_name' | t }}</label>
+							<input class="form__field" id="first_name" type="text" value="" name="customer[first_name]" size="30" placeholder="{{ 'customer.general.first_name' | t }}">
+						</div>
+
+						<div class="form__row">
+							<label class="label-hide" for="last_name">{{ 'customer.general.last_name' | t }}</label>
+							<input class="form__field" id="last_name" type="text" value="" name="customer[last_name]" size="30" placeholder="{{ 'customer.general.last_name' | t }}">
+						</div>
+
+						<div class="form__row">
+							<label class="label-hide" for="email">{{ 'customer.general.email' | t }}</label>
+							<input class="form__field" id="email" type="email" value="" name="customer[email]" size="30" placeholder="{{ 'customer.general.email' | t }}">
+						</div>
+
+						<div class="form__row">
+							<label class="label-hide" for="password" class="login">{{ 'customer.general.password' | t }}</label>
+							<input class="form__field" id="password" type="password" value="" name="customer[password]" size="30" placeholder="{{ 'customer.general.password' | t }}">
+						</div>
+
+						<div class="form__row form__row--submit">
+							<button class="btn btn--submit" type="submit">{{ 'customer.registration.create_account_button' | t }}</button>
+						</div>
+
+						{% endform %}
+					</div>
+				</li>
+			</ul>
+			<!-- end secondary menu level -->
+		</div>
+{% endcomment %}
+
+
+		<div class="nav-list__item nav-list__item--login {% if template contains 'customers' %}active {% endif %}has-dropdown">
+			<a class="nav-list__link" href="/account/login">{{ 'customer.login.heading' | t }}</a>
+
+			<!-- Secondary menu level -->
+			<ul class="nav-list__dropdown">
+				<li class="nav-list__item">
+					<div class="login-form">
+						<div class="form-wrapper form-wrapper--login">
+							{% form 'customer_login', class: 'form form--inverse form-validation' %}
+							{{ form.errors | default_errors }}
+
+							<div class="form__row">
+								<label class="label-hide" for="login_email">{{ 'customer.general.email' | t }}</label>
+								<input class="form__field" id="login_email" type="email" value="" name="customer[email]" size="30" placeholder="{{ 'customer.general.email' | t }}">
+							</div>
+
+							<div class="form__row">
+								<label class="label-hide" for="login_password">{{ 'customer.general.password' | t }}</label>
+								<input class="form__field" id="login_password" type="password" value="" name="customer[password]" size="16"  placeholder="{{ 'customer.general.password' | t }}">
+							</div>
+
+							<div class="form__row text-center">
+								<a class="text-link text-link--form js-forget-password" href="#" alt="{{ 'customer.login.forgot_password' | t }}">{{ 'customer.login.forgot_password' | t }}</a>
+							</div>
+
+							<div class="form__row form__row--submit">
+								<input type="submit" class="btn btn--submit" value="{{ 'customer.login.login_button' | t }}">
+							</div>
+
+							{% endform %}
+						</div>
+
+						<div class="form-wrapper form-wrapper--recover-password display-none">
+							{% form 'recover_customer_password', class: 'form form--inverse' %}
+							{{ form.errors | default_errors }}
+
+							<p class="form__info">{{ 'customer.recover_password.title' | t }}</p>
+
+							{% if form.posted_successfully? %}
+								{% assign reset_success = true %}
+							{% endif %}
+
+							<div class="form__row">
+								<label class="label-hide" for="email">{{ 'customer.recover_password.email' | t }}</label>
+								<input class="form__field" id="recover-email" type="email" value="" size="30" name="email" placeholder="{{ 'customer.recover_password.email' | t }}">
+							</div>
+
+							<div class="form__row form__row--submit">
+								<input type="submit" class="btn btn--submit" value="{{ 'customer.recover_password.button' | t }}">
+							</div>
+
+							<div class="form__row form__row--text text-center">
+								<button class="text-link text-link--form js-forget-password-cancel" type="button" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</button>
+							</div>
+
+							{% endform %}
+						</div>
+					</div>
+				</li>
+
+			</ul>
+			<!-- end secondary menu level -->
+		</div>
+	{% endif %}
+{% endif %}

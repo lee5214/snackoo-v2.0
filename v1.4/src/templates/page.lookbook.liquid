@@ -1,0 +1,543 @@
+<div class="lookbook-template">
+  {% comment %}
+  Template for LookBook page
+  {% endcomment %}
+  <section class="section section--lookbook animation-start js-lookbook">
+
+    <noscript>
+      <div class="animation">
+    </noscript>
+    
+    {% for article in blogs[settings.lookbook_blog].articles %}
+      {% assign recipe_img    = article.image.src | img_url: 'grande' %}
+      {% assign recipe_title  = article.title %}
+      {% assign recipe_url    = article.url %}
+      {% assign recipe_author = article.author %}
+      {% assign recipe_desc   = article.excerpt %}
+    {% endfor %}
+
+    <div class="lookbook__header">
+      {% if settings.lookbook_heading != blank %}
+        <h3 class="section-heading heading--page">{{ settings.lookbook_heading | upcase }}</h3>
+      {% endif %}
+      
+      {% if settings.lookbook_subheading != blank %}
+        <p class="section__info text-center">{{ settings.lookbook_subheading }}</p>
+      {% endif %}
+
+      <div class="lookbook-pick">
+        <div class="lookbook__image">
+          <img src="{{ recipe_img }}" alt="{{ recipe_title }}">
+        </div>
+
+        {% assign content_html = page.content %}
+
+        {% include 'strip_html_tags' with content_html %}
+        {% include 'shortcode' load: content %}
+
+        {% assign product_title_arr = product_title_arr | split: '|' %}
+        {% assign product_desc_arr  = product_desc_arr | split: '|' %}
+        {% assign product_top_arr   = product_top_arr | split: '|' %}
+        {% assign product_left_arr  = product_left_arr | split: '|' %}
+        
+        {% assign counter = 1 %}
+        {% assign index   = 0 %}
+
+        {% for product in collections['all-products'].products %}
+          {% for product_title in product_title_arr %}
+
+            {% assign product_handle = product_title | handleize %}
+
+            {% if product_handle == product.handle %}
+        
+              <div class="lookbook-pick__container" style="top: {{ product_top_arr[index] }}; left: {{product_left_arr[index]}};">
+                <span class="product__index" style="top: {{ product_top_arr[index] }}; left: {{product_left_arr[index]}};">{{ counter}}</span>
+                <div class="product__container">
+                  <span class="product__counter">{{ counter}}</span>
+                  <div class="product__info">
+                    <h3 class="product__title">{{ product.title }}</h3>
+                    <span class="product__spec">
+                      1 {{ product.first_available_variant.weight_unit }}
+                      &nbsp;|&nbsp;
+                      {{ product.type }}
+                    </span>
+                    <span class="product__price">
+                      <span class="money">{{ product.price | money }}</span>
+                    </span>
+                  </div>
+                  
+                  <p class="product__desc">{{ product_desc_arr[index] }}<br>
+                  <a class="text-link--default" href="{{recipe_url}}" title="Check the full recipe">{{ 'layout.lookbook_page.link_text' | t }}</a> {{ 'layout.lookbook_page.after_link_text' | t }}</p>
+                </div>
+
+                {% assign counter = counter | plus: 1 %}
+                {% assign index = index | plus: 1 %}
+
+                {% assign product_ids = product_ids | append: product.first_available_variant.id | append: "|" %}
+
+              </div>
+            {% endif %}
+          {% endfor %}      
+        {% endfor %}
+
+        <form class="lookbook-cart lookbook-cart--all js-form-disable" action="/cart/add" method="POST">
+          {% assign product_id_arr = product_ids | split: '|' %}
+          {% for product_id in product_id_arr %}
+            <input type="hidden" name="id[]" value="{{ product_id }}">
+          {% endfor %}
+          
+          <button class="btn js-add-to-card" type="submit">
+            <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="16" height="20" viewBox="0 0 16 20">
+              <path fill="#fff" d="M14.000,20.000 L2.000,20.000 C0.895,20.000 -0.000,19.105 -0.000,18.000 L-0.000,7.000 C-0.000,5.895 0.895,5.000 2.000,5.000 L4.000,5.000 L4.000,4.000 C4.000,1.791 5.791,-0.000 8.000,-0.000 C10.209,-0.000 12.000,1.791 12.000,4.000 L12.000,5.000 L14.000,5.000 C15.105,5.000 16.000,5.895 16.000,7.000 L16.000,18.000 C16.000,19.105 15.105,20.000 14.000,20.000 ZM10.000,4.000 C10.000,2.895 9.105,2.000 8.000,2.000 C6.895,2.000 6.000,2.895 6.000,4.000 L6.000,5.000 L10.000,5.000 L10.000,4.000 ZM14.000,8.000 C14.000,7.448 13.552,7.000 13.000,7.000 L3.000,7.000 C2.448,7.000 2.000,7.448 2.000,8.000 L2.000,17.000 C2.000,17.552 2.448,18.000 3.000,18.000 L13.000,18.000 C13.552,18.000 14.000,17.552 14.000,17.000 L14.000,8.000 ZM12.000,17.000 C11.448,17.000 11.000,16.552 11.000,16.000 L11.000,13.000 C11.000,12.448 11.448,12.000 12.000,12.000 C12.552,12.000 13.000,12.448 13.000,13.000 L13.000,16.000 C13.000,16.552 12.552,17.000 12.000,17.000 Z"/>
+            </svg>
+            {{ 'layout.general.add_to_cart_button' | t }}
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="product-section">
+      {% for product in collections['all-products'].products %}
+        {% for product_title in product_title_arr %}
+          {% assign product_handle = product_title | handleize %}
+
+          {% if product_handle == product.handle %}
+            <div class="product product-grid-item--alt">
+              <div class="img-holder img-holder--product {% unless product.featured_image.size > 0 %}img-holder--no-product{% endunless %}">
+                <img src="{% if product.featured_image.size > 0 %}{{ product.featured_image | img_url: 'grande'}}{% else %}{{ 'img_no_image.jpg' | asset_url }}{% endif %}" alt="{{ product.title }}">
+                <div class="checkbox-lg">
+                  <input class="js-product-checkbox" id="product-check-{{ forloop.index }}" type="checkbox" data-product-id="{{ product.first_available_variant.id }}" data-product-price="{{ product.price }}" checked>
+                  <label for="product-check-{{ forloop.index }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="12" height="12" viewBox="0 0 12 12">
+                      <path d="M1.000,5.000 L5.000,11.000 L11.000,1.000 "/>
+                    </svg>
+                  </label>
+                </div>
+              </div>
+              <div class="product__info">
+                 <h4 class="product__title"><a href="{{ product.url }}" title="{{ product.title }}">{{ product.title | truncatewords: 4 }}</a></h4>
+                 <span class="product__spec">
+                    1 {% if product.first_available_variant.option1 != 'Default Title' %}
+                      {{ product.first_available_variant.option1 }}
+                    {% else %}
+                      {{ product.first_available_variant.weight_unit }}
+                    {% endif %} 
+                    &nbsp;|&nbsp;
+
+                    {{ product.type | link_to_type }}                            
+                  </span>
+                  <span class="product__price"><span class="money">{{ product.price | money }}</span></span>
+              </div>
+            </div>
+          {% endif %}
+
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+    <div class="picker-nav">
+      <div class="wrapper">
+        <div class="grid">
+          <div class="grid__item">
+            <div class="picker-nav-container">
+              <div class="image-holder">
+                <img class="choosed-pack-image" src="{{ recipe_img }}" alt="{{ recipe_title }}">
+              </div>
+              
+              <div class="choosed-pack-info">
+                <div class="choosed-pack-desc">{{ recipe_desc }} <a class="text-link--default" href="{{ recipe_url }}">{{ 'layout.lookbook_page.recipe_detail' | t }}</a></div>
+                <span class="choosed-pack-author">{{ recipe_author }}</span>
+              </div>
+              
+              <div class="picker-nav__total">
+                <h4 class="total-heading">{{ 'layout.lookbook_page.lookbook_total' | t }}</h4>
+                <span class="choosed-pack-total">
+                  <span class="money">{{ 0 | money }}</span>
+                </span>
+                <form class="lookbook-cart--total js-form-disable" action="/cart/add" method="POST">
+                  {% assign product_id_arr = product_ids | split: '|' %}
+                  {% for product_id in product_id_arr %}
+                    <input type="hidden" name="id[]" value="{{ product_id }}">
+                  {% endfor %}
+                  <button type="submit" class="btn btn--default checkout-btn js-add-to-card">
+                  <span>{{ 'layout.general.add_to_cart_button' | t }}</span> 
+                    <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="16" height="20" viewBox="0 0 16 20">
+                      <path fill="#fff" d="M14.000,20.000 L2.000,20.000 C0.895,20.000 -0.000,19.105 -0.000,18.000 L-0.000,7.000 C-0.000,5.895 0.895,5.000 2.000,5.000 L4.000,5.000 L4.000,4.000 C4.000,1.791 5.791,-0.000 8.000,-0.000 C10.209,-0.000 12.000,1.791 12.000,4.000 L12.000,5.000 L14.000,5.000 C15.105,5.000 16.000,5.895 16.000,7.000 L16.000,18.000 C16.000,19.105 15.105,20.000 14.000,20.000 ZM10.000,4.000 C10.000,2.895 9.105,2.000 8.000,2.000 C6.895,2.000 6.000,2.895 6.000,4.000 L6.000,5.000 L10.000,5.000 L10.000,4.000 ZM14.000,8.000 C14.000,7.448 13.552,7.000 13.000,7.000 L3.000,7.000 C2.448,7.000 2.000,7.448 2.000,8.000 L2.000,17.000 C2.000,17.552 2.448,18.000 3.000,18.000 L13.000,18.000 C13.552,18.000 14.000,17.552 14.000,17.000 L14.000,8.000 ZM12.000,17.000 C11.448,17.000 11.000,16.552 11.000,16.000 L11.000,13.000 C11.000,12.448 11.448,12.000 12.000,12.000 C12.552,12.000 13.000,12.448 13.000,13.000 L13.000,16.000 C13.000,16.552 12.552,17.000 12.000,17.000 Z"/>
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <noscript>
+      </div>
+    </noscript>
+
+  </section>
+</div>
+
+<script>
+   // ----------------------------------------------------
+  //                  LookBook Picker
+  // ----------------------------------------------------
+  function LookBookPicker(options){
+    // if ( !productPickerSelector ) {
+    //   console.error('productPickerSelector isn\'t defined');
+    //   return null;
+    // }
+
+    var self = this;
+
+    this.options = options;
+
+    this.total; // settings into init()
+
+    // lb - lookbook
+    this.DOM = {};
+    this.DOM.lbContainer      = document.querySelector(options.lookbookSelector);
+
+    this.DOM.lbNav            = this.DOM.lbContainer.querySelector('.picker-nav');
+    this.DOM.lbInfo           = this.DOM.lbNav.querySelector('.choosed-pack-info');
+    this.DOM.total            = this.DOM.lbNav.querySelector('.choosed-pack-total .money');
+    this.DOM.checkoutBtn      = this.DOM.lbNav.querySelector('.checkout-btn');
+
+    // Two forms 'Add to Cart'
+    this.DOM.addCartFormAll   = this.DOM.lbContainer.querySelector('.lookbook-cart--all');
+    this.DOM.addCartFormTotal = this.DOM.lbContainer.querySelector('.lookbook-cart--total');
+
+    this.checkboxes = this.DOM.lbContainer.querySelectorAll('.js-product-checkbox');
+    // object with choosed product ids
+    this.products   = this.getProducts();
+
+    document.addEventListener('DOMContentLoaded', function(){
+      self.init();
+    });
+
+    window.addEventListener('load', function(){
+      self.loadAnimation();
+    });
+
+    this.DOM.addCartFormAll.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      var form   = this;
+      var inputs = form.querySelectorAll('input[name="id[]"]');
+      var productIdArr = [];
+
+      for ( var i = 0, max = inputs.length; i < max; i++ ) {
+
+        productIdArr.push(inputs[i].value);
+      }
+
+      self.addToCartRequest(productIdArr, form);
+    });
+
+    this.DOM.addCartFormTotal.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      var form   = this;
+      var productIdArr = [];
+
+      for ( productId in self.products ) {
+
+        productIdArr.push(productId);
+      }
+
+      self.addToCartRequest(productIdArr, form);
+    });
+  };
+
+  LookBookPicker.prototype.init = function() {
+
+    var checkbox, productId, 
+        totalPrice = 0,
+        self = this;
+
+    // get the total sum and add event listener to all checkboxes
+    for ( var i = 0, max = this.checkboxes.length; i < max; i++) {
+
+      checkbox = this.checkboxes[i];
+      checkbox.addEventListener('change', function(e){
+        self.checkboxEvent(e);
+      });
+
+      productId  = this.checkboxes[i].getAttribute('data-product-id');
+      totalPrice = totalPrice + parseInt(this.products[productId].price);
+    }
+
+    //set the total sum
+    this.total = totalPrice;
+    this.setTotal();
+  };
+
+  LookBookPicker.prototype.getProducts = function() {
+
+    var productId, productPrice,
+        products = {};
+
+    for ( var i = 0, max = this.checkboxes.length; i < max; i++) {
+
+      productId    = this.checkboxes[i].getAttribute('data-product-id');
+      productPrice = this.checkboxes[i].getAttribute('data-product-price'),
+
+      products[productId] = {
+        'price': productPrice,
+        'quantity': 1
+      }
+    }
+
+    return products;
+  };
+
+  LookBookPicker.prototype.checkboxEvent = function(e) {
+    var currentTarget = e.currentTarget,
+        productPrice  = currentTarget.getAttribute('data-product-price'),
+        productId     = currentTarget.getAttribute('data-product-id');
+
+    if ( currentTarget.checked ) {
+
+      this.total = this.total + parseInt(productPrice);
+
+      this.products[productId] = {
+        'price': productPrice,
+        'quantity': 1
+      }
+
+    } else {
+
+      this.total = this.total - parseInt(productPrice);
+      delete this.products[productId];
+    }
+
+    this.setTotal();   
+  };
+
+  LookBookPicker.prototype.setTotal = function() {
+
+    if ( this.total >= 0 ) {
+
+      this.DOM.total.innerHTML = Shopify.formatMoney(this.total, "{{ shop.money_format }}");
+
+      {% if settings.show_multiple_currencies %}
+        this.convertCurrency();
+      {% endif %}
+    }
+  };
+
+  // animation for elements after page load
+  LookBookPicker.prototype.loadAnimation = function() {
+
+    var productIndexes = this.DOM.lbContainer.querySelectorAll('.product__index');
+    var counter = 0, 
+        self = this,
+        submitBtn;
+
+    this.DOM.lbContainer.classList.add('animation');
+
+    var interval = setInterval(function(){
+
+      if ( counter < productIndexes.length ) {
+
+        productIndexes[counter].classList.add('show');
+        productIndexes[counter].style.animationDelay = counter * 300 + 'ms';
+        counter++;
+      } else {
+        
+        self.DOM.addCartFormAll.classList.add('show');
+        self.initScrollAnimation();
+        clearInterval(interval);
+      }
+    }, this.options.animationDelay);
+
+  };
+
+  LookBookPicker.prototype.addToCartRequest = function(productIdArr, form) {
+
+    var self = this;
+
+    var request = function() {
+      if ( productIdArr.length ) {
+
+        $.ajax({
+          type: "post",
+          url: "{{ shop.secure_url }}/cart/add.js",
+          data: 'quantity=1&id=' + productIdArr[0],
+          dataType: 'json',
+          success: function() {
+
+            productIdArr.shift();
+            request();
+          }
+        });
+      } else {
+
+        global.updateCart();
+        self.showFromMsg(form);
+      }
+    }  
+
+    request();  
+  };
+
+  LookBookPicker.prototype.showFromMsg = function(form) {
+
+    var formMsg   = form.querySelector('.form-cart-message');
+    var submitBtn = form.querySelector('.js-add-to-card');
+
+    if ( formMsg ) {
+
+      formMsg.classList.remove('hide-message', 'hide');
+      formMsg.classList.add('show-message');
+    } else {
+
+      formMsg = document.createElement('p');
+      formMsg.classList.add('form-cart-message', 'show-message');
+      formMsg.innerHTML = "{{ 'cart.general.added_to_cart_products_html' | t }}";
+      form.insertBefore(formMsg, submitBtn);
+
+      // Hide message
+      setTimeout(function() {
+        formMsg.classList.remove('show-message');
+        formMsg.classList.add('hide-message');
+        formMsg.addEventListener('animationend', function addClasses() {
+          formMsg.classList.add('hide');
+          formMsg.removeEventListener('animationend', addClasses);
+        });
+      }, 5000);
+
+    }
+  };
+
+  {% if settings.show_multiple_currencies %}
+  LookBookPicker.prototype.convertCurrency = function() {
+    
+    if ( this.DOM.total && this.DOM.total.getAttribute('data-currency') !== '' ){
+      this.DOM.total.removeAttribute('data-currency-' + Currency.currentCurrency.toLowerCase());
+      this.DOM.total.removeAttribute('data-currency');
+    }
+
+    if ( window.shopCurrency != Currency.currentCurrency ) {
+      Currency.convertAll(shopCurrency, Currency.currentCurrency, '.choosed-pack-total span.money', 'money_format');
+    }
+  };
+  {% endif %}
+
+  LookBookPicker.prototype.initScrollAnimation = function() {
+
+    var products = this.DOM.lbContainer.querySelectorAll('.product-grid-item--alt');
+
+    var product, startPageCoord,
+        pageObj = [],
+        windowHeight = window.innerHeight;
+
+    var transitionCounter    = 0,
+        counter              = 0,
+        elemOffset           = 50,
+        transitionStep       = 150,
+        latestKnownScrollPos = 0,
+        ticking              = false;
+
+    for ( var i = 0, max = products.length; i < max; i++) {
+
+        product = products[i];
+        productCoord  = calcCoordinates(product);
+
+        // store start pages and top coordinate into object
+        pageObj[i] = {};
+        pageObj[i].product        = product; 
+        pageObj[i].productOffsetX = productCoord.top;
+
+        // the first runing of animation or after page refresh
+        if ( (windowHeight +  window.pageYOffset) >= (pageObj[i].productOffsetX + elemOffset) )  {
+
+            product.classList.add('show-in');
+
+            // counter for transition (change transition for every 3 items)
+            if ( transitionCounter < 3 ) {
+                product.style.transitionDelay = transitionStep * transitionCounter + 'ms';
+                transitionCounter++;
+            } 
+
+            if ( transitionCounter === 3) {
+                transitionCounter = 0;
+            }
+
+            counter++;
+            pageObj[i].productOffsetX = 0;
+        } 
+    }
+
+    function calcCoordinates(el) {
+
+      var box = el.getBoundingClientRect();
+
+      return {
+        top:  box.top  + window.pageYOffset,
+        left: box.left + window.pageXOffset
+      };
+    } 
+
+    // store pageYOffset into a variable
+    function onScroll() {
+
+        latestKnownScrollPos = window.pageYOffset;
+        requestTick();
+    }
+
+    // run requestAnimationFrame only during scrolling
+    function requestTick() {
+
+        if ( !ticking ) {
+            requestAnimationFrame(update);
+        }
+
+        ticking = true;
+    }
+
+    // add animation for items
+    function update() {
+
+        ticking = false;
+
+        var currentScrollPos = latestKnownScrollPos;
+
+        for ( var i = 0, max = pageObj.length; i < max; i++ ) {
+
+            if ( pageObj[i].productOffsetX !== 0 && (windowHeight +  currentScrollPos) >= (pageObj[i].productOffsetX + elemOffset) )  {
+
+                pageObj[i].product.classList.add('show-in');
+
+                // counter for transition (change transition for every 3 items)
+                if ( transitionCounter < 3 ) {
+                    pageObj[i].product.style.transitionDelay = transitionStep * transitionCounter + 'ms';
+                    transitionCounter++;
+                } 
+
+                if ( transitionCounter === 3) {
+                    transitionCounter = 0;
+                }
+
+                // if all items has been animated remove listener for scroll
+                counter++;
+
+                if ( counter === pageObj.length ) {
+                    window.removeEventListener('scroll', onScroll, false);
+                }
+
+                pageObj[i].productOffsetX = 0;
+            }
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, false);
+  };  
+
+  var lookbookPicker = new LookBookPicker({
+    'lookbookSelector': '.js-lookbook',
+    'animationDelay': 200
+  });
+</script>

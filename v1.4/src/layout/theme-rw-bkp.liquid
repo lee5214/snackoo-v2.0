@@ -1,0 +1,143 @@
+<!doctype html>
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->  
+<head>
+  
+  <!-- Basic page needs ================================================== -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <!-- Title and description ================================================== -->
+  <title>
+  {% if page_title contains "[price:" %}
+    {% assign page_title_recipe = page_title | split: "[price:" | first %}
+    {{ page_title_recipe }}
+  {% else %}
+    {{ page_title }}
+  {% endif %}
+  {% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <script>
+//     var link = window.location.href;
+//     if ( link.indexOf('https') < 0 ) {
+//       link = link.replace('http://', 'https://');
+//       window.location.href = link;
+//     }
+
+    function require(src, callback) {
+      var script = window.document.createElement('script');
+      script.src = src;
+      script.async = true;
+      document.body.appendChild(script);
+      if (callback && typeof(callback) === 'function') {
+          script.onload = callback;
+      }
+      return script;
+    }
+  </script>
+
+  <!-- Social meta ================================================== -->
+  {% include 'social-meta-tags' %}
+ 
+  <!-- Helpers ================================================== -->
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+
+  <!-- CSS ================================================== -->
+  {% include 'styleheets' %}
+  <!-- Header hook for plugins ================================================== -->
+  {{ content_for_header }}
+
+  <!-- IE support ================================================== -->
+  {% include 'oldIE-js' %}
+
+
+  <!-- Favicons ================================================== -->
+  {% unless settings.favicon_enable %}
+    <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ 'favicon_apple-touch-icon-152x152.png' | asset_url }}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ 'favicon_apple-touch-icon-144x144.png' | asset_url }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ 'favicon_apple-touch-icon-114x114.png' | asset_url }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ 'favicon_apple-touch-icon-72x72.png' | asset_url }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ 'favicon_apple-touch-icon-57x57.png' | asset_url }}">
+  {% else %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '16x' | format: 'ico' }}">
+  {% endunless %}
+
+  {% comment %}
+  If you store has customer accounts disabled, you can remove the following JS file
+  {% endcomment %}
+  {% if template contains 'customers' %}
+    {{ "customer_area.js" | shopify_asset_url  | script_tag }}
+  {% endif %}
+  {% include 'buddha-megamenu-before' %}
+</head>
+
+
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" style="overflow-y: scroll">
+
+{% assign current_page_title = page_title | handle %}
+  <div class="content-wrapper">
+    <div style="display:none">
+      <p>JavaScript is disabled in your browser, this may cause some limitations to apply, and some functions may not be available.</p>
+    </div>
+
+    {% if settings.fixed_bar_enable %}
+      {% include 'fixed-bar' %}
+    {% endif %}
+
+    {% comment %}
+    Snippet for header with navigation and shopping cart
+    For setting go to Admin -> Theme -> Customize Theme -> Header
+    {% endcomment %}
+    {% section 'header' %}
+
+    <!-- *** Main content *** -->
+    <main class="main-content
+      {% unless template == 'index' or template == 'product' %}
+        main-content--top
+      {% endunless %}
+      {% if template == 'product' %}
+        {% unless product.featured_image.size > 0 %}
+          main-content--top
+        {% endunless %}
+      {% endif %}"
+    role="main">
+        {% if template == 'blog' or template == 'article' %}
+          <div class="js-page-content">
+              {{ content_for_layout }}
+          </div>
+        {% else %}
+          {{ content_for_layout }}
+        {% endif %}
+    </main>
+    <!-- *** End main content *** -->
+
+    {% comment %}
+    Snippet for footers
+    {% endcomment %}
+    {% section 'footer' %}
+  </div> <!-- End content-wrapper -->
+
+  <script>
+
+    window.addEventListener('load', function loadFontAwesome() {
+      loadCSS('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
+      window.removeEventListener('load', loadFontAwesome);
+    });
+  </script>
+  
+  {% comment %}
+  Snippet for scripts that are used on every page
+  {% endcomment %}
+  {% include 'scripts' %}
+
+  {% include 'buddha-megamenu' %}
+</body>
+</html>
