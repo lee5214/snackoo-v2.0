@@ -11,8 +11,8 @@
 	.flexslider-thumb--brands .flex-control-thumbs{
 		display: block;
 		margin: 0 auto;
-		padding: 20px;
-		height: auto;
+		padding: 0;
+		height: 100%;
 		width: auto;
 		position: absolute;
 		top: 0;
@@ -28,8 +28,9 @@
 		background: white;
 		border-radius: 0;
 		border: 1px solid black;
-		width: 300px;
-		height: 100px;
+		width: 400px;
+		float: none;
+		height: 32%;
 		margin: 2px;
 
 	}
@@ -44,8 +45,6 @@
 
 
 	<!-- Flexslider -->
-{% assign home_sec_name = section.settings.sec_subtitle %}
-{% include 'homepage-section-subtitle' with home_sec_name %}
 <div class="flexslider flexslider-thumb flexslider-thumb--brands" data-autoplay="{{- autoplay -}}" data-autoplay-speed="{{- autoplaySpeed -}}" data-slideshow-effect="{{- slideshow_effect -}}">
 		<ul class="slides">
 			{% for block in section.blocks %}

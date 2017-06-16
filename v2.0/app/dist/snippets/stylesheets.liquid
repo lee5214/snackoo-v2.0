@@ -3,10 +3,15 @@
 Index page and Product page
 -----------------------------------------------------
 {%- endcomment -%}
+{%- if template contains 'index' -%}
+  {{ "css.home.scss.css" | asset_url | stylesheet_tag }}
+{%- endif -%}
+
 {%- if template contains 'index' or template contains 'product' -%}
   {{ "css.dependency.scss.css" | asset_url | stylesheet_tag }}
-
 {%- endif -%}
+
+
 {%- comment -%}
 -----------------------------------------------------
 Collection
@@ -16,6 +21,7 @@ Collection
 	{{- 'css.collection.scss.css' | asset_url | stylesheet_tag -}}
 {%- endif -%}
 
+
 {%- comment -%}
 -----------------------------------------------------
 Page about us and landing page
@@ -24,7 +30,6 @@ Page about us and landing page
 {%- if template contains 'page' -%}
   {{ "css.dependency.scss.css" | asset_url | stylesheet_tag }}
   {{ "css.flipclock.css" | asset_url | stylesheet_tag }}
-
 {%- endif -%}
 
 {%- comment -%}

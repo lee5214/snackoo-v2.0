@@ -1,65 +1,13 @@
-<style>
-	.header-top-banner {
-		font-size: 10px;
-		line-height: 12px;
-		font-weight: 700;
-		letter-spacing: .1em;
-		padding-left: calc(100vw / 2 - 944px / 2);
-		padding-right: calc(100vw / 2 - 944px / 2);
-		box-sizing: border-box;
-		width: 100%;
-		height: 33px;
-		position: absolute;
-		border-bottom: solid 1px #ded5c7;
-		z-index: 6;
-		text-transform: uppercase;
-	}
-
-	.header-top-banner > .header-top-slogan {
-		margin: 10px auto;
-		display: block;
-		float: left;
-		text-align: left;
-	}
-
-	#cart-open-btn {
-		float: right;
-		right: 7px;
-		z-index: 101;
-		top: 0;
-		width: 100px;
-		height: 100%;
-		position: relative;
-	/ / margin-right: calc(100 vw / 2 - 944 px / 2);
-	}
-	#cart-open > .cart-total{
-		margin-top: -4px;
-		line-height: 20px;
-		width: 20px;
-		display: inline-block;
-		margin-right: 28px;
-	}
-	#cart-open-btn > #cartCount {
-		top: 4px;
-		right: -5px;
-	}
-
-	#cart-open-btn > .icon--cart {
-		display: block;
-		position: absolute;
-		top: 5px;
-		right: 4px;
-	}
-
-	.header-top-banner .money{
-		font-size: 16px;
-		margin: 10px auto;
-		display: block;
-		color: #f06060;
-	}
-</style>
 
 <div class="header-top-banner">
+	<button id="main-nav-open-btn" class="main-nav-open-btn" type="button">
+          <span class="icon icon--hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+		<span class="fallback-text">{{ 'layout.menu.open_menu' | t }}</span>
+	</button>
 	<div class="header-top-slogan">
 		<span>FREE SHIPPING ON ALL ORDERS $49+</span>
 	</div>

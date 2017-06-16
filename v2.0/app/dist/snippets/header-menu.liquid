@@ -1,42 +1,7 @@
 <style>
 
-	#main-nav {
-		top: 33px;
-		height: 67px;
-		background: #f8eedd;
-		position: relative;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		-webkit-box-align: center;
-		max-width: 944px;
-		margin: 0 auto;
-	}
 
-	.logo-container {
-		position: absolute;
-		height: 100%;
-		left: 0;
-		width: 200px;
-		padding: 0;
-		z-index: 101;
-	}
 
-	.site-logo {
-		border: 4px solid #ed1f2c;
-		box-sizing: border-box;
-
-		display: flex !important;
-		align-items: center;
-		justify-content: center;
-		height: 100%;
-		width: 100%;
-		left: 0;
-		position: absolute;
-	}
-	.site-logo img{
-		margin-top: 0;
-	}
 
 	.nav-list {
 		float: left;
@@ -61,16 +26,6 @@
 		justify-content: center;
 	}
 </style>
-<button id="main-nav-open-btn" class="main-nav-open-btn" type="button">
-          <span class="icon icon--hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-	<span class="fallback-text">{{ 'layout.menu.open_menu' | t }}</span>
-</button>
-
-
 <div id="main-nav" class="drawer drawer--left-side drawer--menu close">
 
 	<!-- Header search form (working on)-->
@@ -100,7 +55,7 @@
 	{% endunless %}{% endcomment %}
 	<!-- End store description -->
 
-	<div class="drawer__wrapper" style="width: calc(100% - 400px);margin: 0 auto;">
+	<div class="drawer__wrapper">
 		<div class="drawer__header">
 
 			{% include 'logo' %}
