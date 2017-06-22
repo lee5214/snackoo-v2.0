@@ -351,7 +351,7 @@
         require(['swiper', 'utils'], function (Swiper, utils) {
             console.log("swiper for .carousel-section-1row0holder0");
             var DOM = utils.domFinder({
-                activeSlideContainer: '.swiper-active-slide',
+                //activeSlideContainer: '.swiper-active-slide',
                 carouselContainer: '.carousel-section-1row0holder0'
             });
 
@@ -372,7 +372,7 @@
                 onInit: function (carouselHomepage) {
                     var slideNumber = carouselHomepage.slides.length;
                     var bdImage, slideLink;
-                    DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
+                    //DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
 
                     for (var i = 0, max = slideNumber; i < max; i++) {
                         bdImage = carouselHomepage.slides[i].getAttribute('data-img-bg');
@@ -382,7 +382,7 @@
                 },
                 onSlideChangeStart: function (carouselHomepage) {
                     var slideNumber = carouselHomepage.slides.length;
-                    DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
+                    //DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
                 },
                 preloadImages: false,
                 lazyLoading: true,
@@ -404,12 +404,12 @@
         });
     }
 
-    if (document.querySelector('.carousel-section-1row001')) {
+    if (document.querySelector('.carousel-section-1row0holder1')) {
         require(['swiper', 'utils'], function (Swiper, utils) {
-            console.log("swiper for .carousel-section-1row001");
+            console.log("swiper for .carousel-section-1row0holder1");
             var DOM = utils.domFinder({
-                activeSlideContainer: '.swiper-active-slide',
-                carouselContainer: '.carousel-section-1row001'
+                //activeSlideContainer: '.swiper-active-slide',
+                carouselContainer: '.carousel-section-1row0holder1'
             });
 
             var autoplaySetting = parseInt(DOM.carouselContainer.getAttribute('data-autoplay'), 10) || 0;
@@ -417,19 +417,19 @@
             // Featured carousel
             var allowLinksClick = true;
             new Swiper(DOM.carouselContainer, {
-                nextButton: '.homepage-swiper-btn-next-row001',
-                prevButton: '.homepage-swiper-btn-prev-row001',
+                nextButton: '.homepage-swiper-btn-next-row0holder1',
+                prevButton: '.homepage-swiper-btn-prev-row0holder1',
                 preventClicks: false,
-                spaceBetween: 20,
+                spaceBetween: 10,
                 slidesPerGroup: 4,
                 slidesPerView: 4,
                 slidesPerColumn: 1,
-                loop: false,
+                loop: true,
                 autoplay: autoplaySetting,
                 onInit: function (carouselHomepage) {
                     var slideNumber = carouselHomepage.slides.length;
                     var bdImage, slideLink;
-                    DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
+                    //DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
 
                     for (var i = 0, max = slideNumber; i < max; i++) {
                         bdImage = carouselHomepage.slides[i].getAttribute('data-img-bg');
@@ -439,14 +439,71 @@
                 },
                 onSlideChangeStart: function (carouselHomepage) {
                     var slideNumber = carouselHomepage.slides.length;
-                    DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
+                    //DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
                 },
                 preloadImages: false,
                 lazyLoading: true,
                 breakpoints: {
                     1024: {
-                        slidesPerView: 4,
-                        slidesPerGroup: 4
+                        slidesPerView: 3,
+                        slidesPerGroup: 3
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3
+                    },
+                    480: {
+                        slidesPerView: 2,
+                        slidesPerGroup: 2
+                    }
+                }
+            });
+        });
+    }
+
+    if (document.querySelector('.carousel-section-1row0holder2')) {
+        require(['swiper', 'utils'], function (Swiper, utils) {
+            console.log("swiper for .carousel-section-1row0holder2");
+            var DOM = utils.domFinder({
+                //activeSlideContainer: '.swiper-active-slide',
+                carouselContainer: '.carousel-section-1row0holder2'
+            });
+
+            var autoplaySetting = parseInt(DOM.carouselContainer.getAttribute('data-autoplay'), 10) || 0;
+
+            // Featured carousel
+            var allowLinksClick = true;
+            new Swiper(DOM.carouselContainer, {
+                nextButton: '.homepage-swiper-btn-next-row0holder2',
+                prevButton: '.homepage-swiper-btn-prev-row0holder2',
+                preventClicks: false,
+                spaceBetween: 10,
+                slidesPerGroup: 4,
+                slidesPerView: 4,
+                slidesPerColumn: 1,
+                loop: true,
+                autoplay: autoplaySetting,
+                onInit: function (carouselHomepage) {
+                    var slideNumber = carouselHomepage.slides.length;
+                    var bdImage, slideLink;
+                    //DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
+
+                    for (var i = 0, max = slideNumber; i < max; i++) {
+                        bdImage = carouselHomepage.slides[i].getAttribute('data-img-bg');
+                        slideLink = carouselHomepage.slides[i].querySelector('.product__link ');
+                        slideLink.style.backgroundImage = 'url(' + bdImage + ')';
+                    }
+                },
+                onSlideChangeStart: function (carouselHomepage) {
+                    var slideNumber = carouselHomepage.slides.length;
+                    //DOM.activeSlideContainer.textContent = carouselHomepage.activeIndex + 1 + "/" + slideNumber;
+                },
+                preloadImages: false,
+                lazyLoading: true,
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3
                     },
                     768: {
                         slidesPerView: 3,

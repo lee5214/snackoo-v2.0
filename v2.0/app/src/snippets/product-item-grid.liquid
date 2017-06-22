@@ -4,7 +4,7 @@ Snippet is used to show products in 'collection.liquid', 'similar-product-carous
 	<div class="product__info">
 		<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
 		<h7 class="product__title"><a href="{{ product.url }}"
-									  title="{{ product.title }}">{{ product.title | truncatewords: 12 }}</a></h7>
+									  title="{{ product.title }}">{{ product.title | truncatewords: 8 }}</a></h7>
 		<h5 class="product__price">{{ product.price | money }}</h5>
 		<h7 class="product__spec">
 			{% if product.type != blank %}

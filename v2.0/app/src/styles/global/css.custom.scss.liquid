@@ -1,5 +1,7 @@
 $header_color: white; //rgba(230,0,80,0.2);
 $index_slider_height: 92vh;
+
+$worm_color_primary: #f74646;
 //header white border
 
 //for both pc and mobile
@@ -29,7 +31,7 @@ body {
   .shopify-section {
     //max-width: calc(100vw - 66px);
     //margin-bottom: 100px;
-    margin: 0 auto;
+    margin: 40px auto;
     //max-width: 1400px;
   }
   #shopify-section-1489396154366{
@@ -54,7 +56,7 @@ body {
     display: block;
     text-align: center;
     width: 50%;
-    background: #a8e8e2;
+    background: $worm_color_primary;
     //border-radius: 32px;
     @media (max-width: 768px) {
       //width: 100%;
@@ -1157,6 +1159,8 @@ footer {
     z-index: 2;
     left: 50%;
     transform: translatex(-50%);
+    margin: auto;
+    bottom: -800px;
     li {
       border-color: transparent;
       border-radius: 0;
@@ -1172,7 +1176,6 @@ footer {
       border-top-right-radius: 65px;
       -webkit-transition-delay: .3s;
       -moz-transition-delay: .3s;
-      -ms-transition-delay: .3s;
       -o-transition-delay: .3s;
       transition-delay: .3s;
       &:hover {
@@ -1261,12 +1264,51 @@ section.section--special-offer {
   }
 }
 
-//roar
-#primary.content-area.shop-page{
-  #content{
-    &>.row{
-      box-shadow: 0 0 10px #ccc5c5;
-      padding: 40px;
+
+
+
+//brand
+.flexslider-thumb--brands {
+  padding-left: calc(100vw/2 - 944px/2);
+  padding-right: calc(100vw/2 - 944px/2);
+  width: 944px;
+  .slides {
+    width: 500px;
+    margin: 0 auto;
+    height: 400px;
+    z-index: 10;
+    .slide{
+      height: 100%;
     }
+  }
+  .flex-control-thumbs{
+    width: 944px;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    height: 100%;
+    //width: auto;
+    position: absolute;
+    top: 0;
+    bottom: initial;
+    z-index: 1;
+    column-count: 2;
+    column-gap: 500px;
+  }
+
+  .flex-control-thumbs li{
+    background: white;
+    border-radius: 0;
+    border: 1px solid #e7e7e7;
+    width: auto;
+    float: none;
+    height: 32%;
+    margin: 2px;
+    img{
+      width: auto;
+      height: 100%;
+      margin: 0 auto;
+    }
+
   }
 }

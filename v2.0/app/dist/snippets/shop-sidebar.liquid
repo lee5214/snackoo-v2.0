@@ -1,14 +1,4 @@
-<style>
-    .sidebar-pos{
-        //position: fixed;
-        height: calc(90vh - 145px);
-        overflow: scroll;
-        width: 250px;
-    }
-</style>
-
-
-{%- if section.blocks.size > 0 -%}
+{%- if section.blocks.size >= 0 -%}
   {%- for my_block in section.blocks -%}
 	{%- case my_block.type -%}
       {%- when 'text' -%}

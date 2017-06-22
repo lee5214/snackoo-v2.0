@@ -8,7 +8,7 @@
         <div class="xlarge-2 large-2 columns show-for-large-up sidebar-pos">
           <div class="shop_sidebar wpb_widgetised_column">                   
             <div id="secondary" class="widget-area" role="complementary">
-              {%- include 'shop-sidebar' -%}
+              {%- include 'shop-sidebar'-%}
             </div>
           </div>
         </div>
@@ -26,48 +26,38 @@
 
               <ul class="shop-ordering">
                 <li id="shop-catalog-ordering">
-                  <div class="select2-selection">
-                    {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-                    <select class="orderby filters-toolbar__input--sort">
-                      {% if sort_by == collection.default_sort_by %}
-                        <option value="title-ascending" selected="selected">{{ 'collections.sorting.title' | t }}</option>
-                        {% if collection.default_sort_by != 'manual' %}
-                          <option value="manual"{% if sort_by == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
-                        {% endif %}
-                        {% if collection.default_sort_by != 'best-selling' %}
-                          <option value="best-selling"{% if sort_by == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
-                        {% endif %}
-                        {% if collection.default_sort_by != 'title-ascending' %}
-                          <option value="title-ascending"{% if sort_by == "title-ascending"  %}selected="selected"{% endif %}>{{ 'collections.sorting.az' | t }}</option>
-                        {% endif %}
-                        {% if collection.default_sort_by != 'title-descending' %}
-                          <option value="title-descending"{% if sort_by == "title-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.za' | t }}</option>
-                        {% endif %}
-                        {% if collection.default_sort_by != 'price-ascending' %}
-                          <option value="price-ascending"{% if sort_by == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
-                        {% endif %}
-                        {% if collection.default_sort_by != 'price-descending' %}
-                          <option value="price-descending"{% if sort_by == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
-                        {% endif %}
-                        {% if collection.default_sort_by != 'created-descending' %}
-                          <option value="created-descending"{% if sort_by == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
-                        {% endif %}
-                        {% if collection.default_sort_by != 'created-ascending' %}
-                          <option value="created-ascending"{% if sort_by == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
-                        {% endif %}
-                      {% else %}
-                        <option value="manual"{% if sort_by == "manual" %} selected="selected"{% endif %}>{{ 'collections.sorting.featured' | t }}</option>
-                        <option value="best-selling"{% if sort_by == "best-selling" %} selected="selected"{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
-                        <option value="title-ascending"{% if sort_by == "title-ascending"  %}selected="selected"{% endif %}>{{ 'collections.sorting.az' | t }}</option>
-                        <option value="title-descending"{% if sort_by == "title-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.za' | t }}</option>
-                        <option value="price-ascending"{% if sort_by == "price-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
-                        <option value="price-descending"{% if sort_by == "price-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
-                        <option value="created-descending"{% if sort_by == "created-descending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_descending' | t }}</option>
-                        <option value="created-ascending"{% if sort_by == "created-ascending" %} selected="selected"{% endif %}>{{ 'collections.sorting.date_ascending' | t }}</option>
-                      {% endif %}
-                    </select>
+                  <div class="collection__filters">
+                    <div>
+                      <label for="sort-by">Sort by</label>
+                      <select id="sort-by">
+                        <option value="manual">Featured</option>
+                        <option value="price-ascending">Price: Low to High</option>
+                        <option value="price-descending">Price: High to Low</option>
+                        <option value="title-ascending">A-Z</option>
+                        <option value="title-descending">Z-A</option>
+                        <option value="created-ascending">Oldest to Newest</option>
+                        <option value="created-descending">Newest to Oldest</option>
+                        <option value="best-selling">Best Selling</option>
+                      </select>
+                    </div>
+                    <script>
+                        Shopify.queryParams = {};
+                        if (location.search.length) {
+                            for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+                                aKeyValue = aCouples[i].split('=');
+                                if (aKeyValue.length > 1) {
+                                    Shopify.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+                                }
+                            }
+                        }
+                        jQuery('#sort-by')
+                            .val('{{ collection.sort_by | default: collection.default_sort_by | escape }}')
+                            .bind('change', function() {
+                                Shopify.queryParams.sort_by = jQuery(this).val();
+                                location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
+                            });
+                    </script>
                   </div>
-                  <input class="collection-header__default-sort" type="hidden" value="{{ collection.default_sort_by }}">
                 </li>
               </ul>
               {%- endif -%}

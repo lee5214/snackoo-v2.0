@@ -1,3 +1,4 @@
+$worm_color_primary: #f74646;
 .section_container {
   margin: 0 auto;
   position: relative;
@@ -120,7 +121,7 @@
           font-weight: 600;
           font-size: 14px;
           height: auto;
-          min-height: 60px;
+          min-height: 70px;
           //max-height: 60px;
         }
         .product__price {
@@ -194,8 +195,9 @@
   .carousel-button-prev {
     display: none;
   }
-  .carousel-button-next {
-    background-color: #a8e8e2;
+  .carousel-button-next, .carousel-button-prev {
+    background-color: $worm_color_primary;
+    z-index: 11;
     svg{
       fill: white;
     }
@@ -203,14 +205,17 @@
   .swiper-container{
     width: 90%;
     margin-left: 0;
-    background: #a8e8e2;
+    //background: #a8e8e2;
     .swiper-slide{
       background: white;
-      .product__info > .spr-badge[data-rating="0.0"]{
-        //display: none !important;
-      }
+      border: 1px solid rgb(231,231,231);
       .product__link{
         width: 99%;
+        .img-holder{
+          max-height: 200px;
+          overflow: hidden;
+        }
+
       }
     }
   }
