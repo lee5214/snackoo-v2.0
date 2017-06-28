@@ -8,7 +8,7 @@
 				<div class="product__block">
 					<div class="product__block-item">
 						<!-- Swiper -->
-						<div class="swiper-container carousel carousel--product-gallery">
+						<div class="swiper-container carousel carousel--product-gallery carousel--product-gallery-productimg">
 							<div class="swiper-wrapper">
 								{% if product.variants.size > 1 %}
 
@@ -51,11 +51,12 @@
 									{% endfor %}
 								{% endif %}
 							</div>
-							<div class="carousel__navigation"></div>
-							<div class="swiper-button-next carousel-button-next">
+							<div class="carousel__navigation carousel__navigation-productimg"></div>
+							<div class="swiper-button-next swiper-button-next-productimg carousel-button-next">
 								<span class="icon icon--arrow-right"></span>
 							</div>
-							<div class="swiper-button-prev carousel-button-prev">
+							<div class="swiper-button-prev swiper-button-prev-productimg carousel-button-prev
+">
 								<span class="icon icon--arrow-left"></span>
 							</div>
 						</div>
@@ -132,31 +133,6 @@
 									</form>
 								</div> <!-- End form-wrapper -->
 
-								<div class="product__desc">
-									{% assign content_html = product.description %}
-									{% include 'strip_html_tags' with content_html %}
-
-									{% assign split_nutritional = '[Nutritional value]' %}
-									{% if content contains split_nutritional %}
-										{% assign description_text = content | split: split_nutritional | first %}
-										{% assign nutritional_value_text = content | split: split_nutritional | last %}
-									{% endif %}
-
-									{% comment %}
-									Product decription
-									{% endcomment %}
-									{% if settings.product_description_enable %}
-										<div itemprop="description" class="rte product__desc-content">
-											{% if description_text != blank %}
-												{{ description_text }}
-											{% else %}
-												{{ product.description }}
-											{% endif %}
-										</div>
-									{% endif %}
-								</div>
-
-
 								{% if settings.wishlist_enable %}
 
 									<div class="form-wrapper form-wrapper--wishlist js-wishlist-form">
@@ -178,7 +154,7 @@
 											{% endunless %}
 
 											{% if display %}
-												<form accept-charset="UTF-8" id="add-to-wish-list" action="/contact"
+												<form class="form" accept-charset="UTF-8" id="add-to-wish-list" action="/contact"
 													  method="post">
 													<input name="form_type" type="hidden" value="customer">
 													<input name="utf8" type="hidden" value="✓">
@@ -186,7 +162,7 @@
 														   value="{{ customer.email }}"/>
 													<input id="update-me" type="hidden" name="contact[tags]"
 														   value="{{ value }}"/>
-													<button class="text-link--default" type="submit">
+													<button class="btn btn--default btn--full btn--submit" type="submit">
 														<span class="icon icon--plus"></span>
 														{{ 'layout.wishlist_page.add_to_wishlist' | t }}
 													</button>
@@ -200,6 +176,84 @@
 										{% endif %}
 									</div>
 								{% endif %}
+
+
+								<div class="product__desc">
+									<div class="tab">
+										<button id="defaultOpen" class="tablinks "
+												onclick="openCity(event, 'Description')">Description
+										</button>
+										<button class="tablinks " onclick="openCity(event, 'Details')">Details</button>
+									</div>
+									{% assign content_html = product.description %}
+									{% include 'strip_html_tags' with content_html %}
+
+									{% assign split_ = '--split--' %}
+									{% if content contains split %}
+										{% assign description_text = content | split: '--split--' | first %}
+										{% assign nutritional_value_text = content | split: '--split--' | last %}
+										{% else %}
+											{% assign description_text = content %}
+									{% endif %}
+
+									{% comment %}
+									Product decription
+									{% endcomment %}
+
+									<div id="Description" class="tabcontent">
+										{{ description_text }}
+									</div>
+									<div id="Details" class="tabcontent">
+										{{ nutritional_value_text }}
+									</div>
+									<script>
+                                        function openCity(evt, cityName) {
+                                            // Declare all variables
+                                            var i, tabcontent, tablinks;
+                                            // Get all elements with class="tabcontent" and hide them
+                                            tabcontent = document.getElementsByClassName("tabcontent");
+                                            for (i = 0; i < tabcontent.length; i++) {
+                                                tabcontent[i].style.display = "none";
+                                            }
+
+                                            // Get all elements with class="tablinks" and remove the class "active"
+                                            tablinks = document.getElementsByClassName("tablinks");
+                                            for (i = 0; i < tablinks.length; i++) {
+                                                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                                            }
+
+                                            // Show the current tab, and add an "active" class to the button that opened the tab
+                                            document.getElementById(cityName).style.display = "block";
+                                            evt.currentTarget.className += " active";
+                                        }
+                                        document.getElementById("defaultOpen").click();
+									</script>
+
+									{% comment %}
+									{% assign content_html = product.description %}
+									{% include 'strip_html_tags' with content_html %}
+
+									{% assign split_nutritional = '[Nutritional value]' %}
+									{% if content contains split_nutritional %}
+										{% assign description_text = content | split: split_nutritional | first %}
+										{% assign nutritional_value_text = content | split: split_nutritional | last %}
+									{% endif %}
+
+									{% comment %}
+									Product decription
+									{% endcomment %}
+									{% if settings.product_description_enable %}
+										<div itemprop="description" class="rte product__desc-content">
+											{% if description_text != blank %}
+												{{ description_text }}
+											{% else %}
+												{{ product.description }}
+											{% endif %}
+										</div>
+									{% endif %}
+									{% endcomment %}
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -208,13 +262,12 @@
 		</div> <!-- End grid -->
 	</div> <!-- End wrapper -->
 </div>
-
-<hr class="hr--clear-inverse hr--desktop">
 {% comment %}
 Add product review widget, must install Product Review App:
 https://apps.shopify.com/product-reviews
 {% endcomment %}
     {% if settings.product_reviews_recipe == 'reviews' %}
+		<hr class="hr--clear-inverse hr--desktop">
 		<div class="wrapper">
 			<div class="grid paste">
 				<div class="grid__item one-whole fold product-reviews {% if product.featured_image.size > 0 %}fade-up delay-three{% endif %}">
@@ -370,8 +423,9 @@ Similar Products
 {% endcomment %}
     {% if settings.product_similar_enable %}
 		<div class="wrapper">
+			{% comment %}
 			<div class="swiper-button-prev carousel-button-prev"
-				 style="background-image: none; margin:-5% 0 0 -5%;position: relative;width: 0;float: left;height: 600px;">
+				 style="background-image: none; margin:-5% 0 0 -5%;position: relative;width: 0;float: left;height: 800px;">
 				<svg viewBox="0 0 18 18" style="float:right;width: 24px;margin-top: 300px;margin-right: 50%;"
 					 data-reactid=".2akuon0ef4.1.2.0.0.1.0:$experiences_11.0.1.3.0.0.0.0">
 					<path d="M13.703 16.293a1 1 0 1 1-1.415 1.414l-7.995-8a1 1 0 0 1 0-1.414l7.995-8a1 1 0 1 1 1.415 1.414L6.413 9l7.29 7.293z"
@@ -379,14 +433,15 @@ Similar Products
 				</svg>
 			</div>
 			<div class="swiper-button-next carousel-button-next"
-				 style="background-image: none; margin:-5% -5% 0 0;position: relative;width: 0;float: right;height: 600px;">
+				 style="background-image: none; margin:-5% -5% 0 0;position: relative;width: 0;float: right;height: 800px;">
 				<svg viewBox="0 0 18 18" style="float:left;width: 24px;margin-top: 300px;margin-left: 50%"
 					 data-reactid=".2cplo9u29s0.1.2.0.0.1.0:$experiences_5.0.1.3.2.0.0.0">
 					<path d="M4.293 1.707A1 1 0 1 1 5.708.293l7.995 8a1 1 0 0 1 0 1.414l-7.995 8a1 1 0 1 1-1.415-1.414L11.583 9l-7.29-7.293z"
 						  data-reactid=".2cplo9u29s0.1.2.0.0.1.0:$experiences_5.0.1.3.2.0.0.0.0"></path>
 				</svg>
 			</div>
-			<div class="grid" style="position: relative;margin-left: 0;width: 100%;float: left;height: 600px;">
+			{% endcomment %}
+			<div class="grid" style="position: relative;margin-left: 0;width: 100%;float: left;">
 				<div class="grid__item" style="padding-left: 0;">
 					<div class="fold similar-product {% if product.featured_image.size > 0 %}fade-up delay-four{% endif %}">
 						<h3 class="heading heading--add fold__toggle">{{ 'products.product_page.similar_products_title' | t }}</h3>
@@ -422,6 +477,7 @@ nutritional value
 {% endcomment %}
 
 <hr class="hr--clear-inverse hr--desktop">
+{% comment %}
 <div class="wrapper">
 	<div class="grid">
 		<div class="product product--lg grid__item one-whole {% if product.featured_image.size > 0 %}fade-up delay-two{% endif %}">
@@ -518,8 +574,4 @@ nutritional value
 		</div> <!-- End grid__item -->
 	</div> <!-- End grid -->
 </div> <!-- End wrapper -->
-
-
-<script type="application/json" id="ProductJson">
-
-</script>
+{% endcomment %}

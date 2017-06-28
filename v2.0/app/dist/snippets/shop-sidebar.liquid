@@ -58,7 +58,7 @@
           <h3 class="widget-title">{{ my_block.settings.heading }}</h3>
           {%- endif -%}
           <ul class="product-categories">
-            {%- for my_collection in collections -%}
+            {%- for my_collection in collections limit: 10 -%}
               {%- unless my_collection.handle == 'all' -%}
               <li class="cat-item"><a{% if collection.handle == my_collection.handle %} class="active"{% endif %} href="{{ my_collection.url }}">{{ my_collection.title }}</a> <span class="count">{{ my_collection.all_products_count }}</span></li>
               {%- endunless -%}
@@ -71,7 +71,7 @@
           <h3 class="widget-title">{{ my_block.settings.heading }}</h3>
           {%- endif -%}
           <ul class="tagcloud">
-            {%- for tag in collection.all_tags -%}
+            {%- for tag in collection.all_tags limit: 10 -%}
               {%- if current_tags contains tag -%}
               <li class="active">{{ tag | link_to_remove_tag: tag }}</li>
               {%- else -%}

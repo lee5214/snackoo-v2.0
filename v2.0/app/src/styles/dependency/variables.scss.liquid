@@ -1,0 +1,301 @@
+/* ==========================================================================
+   1. Variables, theme settings, and Sass mixins
+   ========================================================================== */
+
+/* Sass Mixins
+/* -------------------------------------------------------------------------- */
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both; }
+  *zoom: 1;
+}
+
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin transition($transition: 0.1s all) {
+  @include prefix('transition', #{$transition});
+}
+
+@mixin transform($transform: 0.1s all) {
+  @include prefix('transform', #{$transform});
+}
+
+@mixin transform-origin($top: 0, $left: 0) {
+  -webkit-transform-origin: $top $left;
+  transform-origin: $top $left;
+}
+
+@mixin gradient($from, $to, $fallback) {
+  background: $fallback;
+  background: -moz-linear-gradient(top, $from 0%, $to 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
+  background: -webkit-linear-gradient(top, $from 0%, $to 100%);
+  background: -o-linear-gradient(top, $from 0%, $to 100%);
+  background: -ms-linear-gradient(top, $from 0%, $to 100%);
+  background: linear-gradient(top bottom, $from 0%, $to 100%);
+}
+
+@mixin backface($visibility: hidden) {
+  @include prefix('backface-visibility', #{$visibility});
+}
+
+@mixin visuallyHidden {
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+}
+
+@mixin box-sizing($box-sizing: border-box) {
+  -webkit-box-sizing: #{$box-sizing};
+  -moz-box-sizing: #{$box-sizing};
+  box-sizing: #{$box-sizing};
+}
+
+@mixin content-tl($top: 0, $left: 0, $width: 15px, $height: 15px, $bg: #000000) {
+  content: "";
+  display: block;
+  width: $width;
+  height: $height;
+  position: absolute;
+  top: $top;
+  left: $left;
+  background-color: $bg;
+}
+
+@mixin content-tr($top: 0, $right: 0, $width: 15px, $height: 15px, $bg: #000000) {
+  content: "";
+  display: block;
+  width: $width;
+  height: $height;
+  position: absolute;
+  top: $top;
+  right: $right;
+  background-color: $bg;
+}
+
+@mixin content-br($bottom: 0, $right: 0, $width: 15px, $height: 15px, $bg: #000000) {
+  content: "";
+  display: block;
+  width: $width;
+  height: $height;
+  position: absolute;
+  bottom: $bottom;
+  right: $right;
+  background-color: $bg;
+}
+
+@mixin content-bl($bottom: 0, $left: 0, $width: 15px, $height: 15px, $bg: #000000) {
+  content: "";
+  display: block;
+  width: $width;
+  height: $height;
+  position: absolute;
+  bottom: $bottom;
+  left: $left;
+  background-color: $bg;
+}
+
+@mixin animation($animation: none) {
+  -webkit-animation: #{$animation};
+  -moz-animation: #{$animation};
+  animation: #{$animation};
+}
+
+@function em($target, $context: $baseFontSize) {
+  @if $target == 0 {
+    @return 0;
+  }
+  @return $target / $context + 0em;
+}
+
+@function color-control($color) {
+  @if (lightness( $color ) > 50) {
+    @return #000;
+  }
+  @else {
+    @return #fff;
+  }
+}
+
+/*============================================================================
+  Dependency-free breakpoint mixin
+    - http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+==============================================================================*/
+$min: min-width;
+$max: max-width;
+@mixin at-query ($constraint, $viewport1, $viewport2:null) {
+  @if $constraint == $min {
+    @media screen and ($min: $viewport1) {
+      @content;
+    }
+  } @else if $constraint == $max {
+    @media screen and ($max: $viewport1) {
+      @content;
+    }
+  } @else {
+    @media screen and ($min: $viewport1) and ($max: $viewport2) {
+      @content;
+    }
+  }
+}
+
+/* Layout variables
+/* -------------------------------------------------------------------------- */
+{% if settings.enable_wide_layout %}
+$siteWidth: 1340px;
+{% else %}
+$siteWidth: 1040px;
+{% endif %}
+
+$gutter: 30px;
+$gridGutter: 30px;
+$radius: 2px;
+
+$small: 480px;
+$medium: 768px;
+$large: 769px;
+{% if settings.enable_wide_layout %}
+$wide: 1200px;
+{% endif %}
+
+$viewportIncrement: 1px;
+$postSmall: $small + $viewportIncrement;
+$preMedium: $medium - $viewportIncrement;
+$preLarge: $large - $viewportIncrement;
+
+
+/* The following are dependencies of csswizardry grid
+/* -------------------------------------------------------------------------- */
+$breakpoints: (
+        'small' '(max-width: #{$small})',
+        'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
+        'medium-down' '(max-width: #{$medium})',
+{% if settings.enable_wide_layout %}
+'large' '(min-width: #{$large}) and (max-width: #{$wide})',
+{% else %}
+'large' '(min-width: #{$large})',
+{% endif %}
+'post-large' '(min-width: #{$large})'{% if settings.enable_wide_layout %},
+'wide' '(min-width: #{$wide})'{% endif %}
+);
+$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large', 'post-large', 'wide');
+$breakpoint-has-push:  ('medium', 'medium-down', 'large', 'post-large', 'wide');
+$breakpoint-has-pull:  ('medium', 'medium-down', 'large', 'post-large', 'wide');
+
+/* Color variables
+/* -------------------------------------------------------------------------- */
+$colorBackground: {{ settings.color_body_bg }};
+$colorPrimary: {{ settings.color_primary }};
+$colorHighlight: {{ settings.color_highlight }};
+$colorAccent: {{ settings.color_accent }};
+$colorAdditional: {{ settings.color_additional }};
+$colorInverse: {{ settings.color_inverse }};
+$colorNeutral: #f5f4f4;
+$colorAdditionalSecond: lighten(desaturate(adjust-hue(#5c4b51, 10.2674), 3.8939), 32.9412);
+$colorHighlightSecond:  lighten(saturate(adjust-hue(#f06060, 0.0000), 8.1505), 12.5490);
+
+// Button colors
+$colorBtnPrimary: $colorHighlight;
+$colorBtnPrimaryHover: $colorPrimary;
+$colorBtnPrimaryActive: $colorPrimary;
+$colorBtnPrimaryText: $colorInverse;
+
+// Text link colors
+$colorLink: $colorHighlight;
+$colorLinkHover: $colorPrimary;
+
+// Text colors
+$colorTextBody: {{ settings.color_body_text }};
+$colorTextBodyLight:  lighten(desaturate(adjust-hue($colorTextBody, 4.0336), 3.1089), 47.8431);
+$colorTextHeader: {{ settings.color_headers }};
+$colorTextAddHeader:{{ settings.color_add_headers }};
+
+// Backgrounds
+$colorBody: {{ settings.color_body_bg }};
+$colorTopBar: $colorPrimary;
+
+// Border colors
+$colorBorder: $colorInverse;
+
+// Password page
+$passwordPageUseBgImage: true;
+
+/* Typography variables
+/* -------------------------------------------------------------------------- */
+{% if settings.font_body_family contains 'Google' %}
+{% assign font_base_parts = settings.font_body_family | split: '_' %}
+{% assign font_base_name = font_base_parts[1] %}
+{% capture base_family %}"{{ font_base_name | split: ':' | first | replace: '+', ' ' }}"{% if font_base_parts.last == 'serif' %}, serif {% else %}, Tahoma, Geneva, sans-serif{% endif %}{% endcapture %}
+{% else %}
+{% assign base_family = settings.font_body_family %}
+{% endif %}
+
+{% if settings.font_header_page_family contains 'Google' %}
+{% assign font_header_page_parts = settings.font_header_page_family | split: '_' %}
+{% assign font_header_page_name = font_header_page_parts[1] %}
+{% capture header_page_family %}"{{ font_header_page_name | split: ':' | first | replace: '+', ' ' }}"{% if font_header_page_parts.last == 'serif' %}, serif {% else %}, Tahoma, Geneva, sans-serif{% endif %}{% endcapture %}
+{% assign header_page_weight = font_header_page_parts[2] %}
+{% else %}
+{% assign header_page_family = settings.font_header_page_family %}
+{% assign header_page_weight = 700 %}
+{% endif %}
+
+{% if settings.font_header_family contains 'Google' %}
+{% assign font_header_parts = settings.font_header_family | split: '_' %}
+{% assign font_header_name = font_header_parts[1] %}
+{% capture header_family %}"{{ font_header_name | split: ':' | first | replace: '+', ' ' }}"{% if font_header_parts.last == 'serif' %}, serif {% else %}, Bitter, 'Palatino Linotype', 'Book Antiqua', Palatino, serif{% endif %}{% endcapture %}
+{% assign header_weight = font_header_parts[2] %}
+{% else %}
+{% assign header_family = settings.font_header_family %}
+{% assign header_weight = 700 %}
+{% endif %}
+
+{% if settings.font_additional_family contains 'Google' %}
+{% assign font_additional_parts = settings.font_additional_family | split: '_' %}
+{% assign font_additional_name = font_additional_parts[1] %}
+{% capture additional_family %}"{{ font_additional_name | split: ':' | first | replace: '+', ' ' }}"{% if font_additional_parts.last == 'serif' %}, serif {% else %}, Bitter, 'Palatino Linotype', 'Book Antiqua', Palatino, serif{% endif %}{% endcapture %}
+{% assign additional_weight = font_additional_parts[2] %}
+{% else %}
+{% assign additional_family = settings.font_additional_family %}
+{% assign additional_weight = 700 %}
+{% endif %}
+
+{% if settings.font_accent_family contains 'Google' %}
+{% assign font_accent_parts = settings.font_accent_family | split: '_' %}
+{% assign font_accent_name = font_accent_parts[1] %}
+{% capture accent_family %}"{{ font_accent_name | split: ':' | first | replace: '+', ' ' }}"{% if font_accent_parts.last == 'serif' %}, serif {% else %}, Tahoma, Geneva, sans-serif{% endif %}{% endcapture %}
+{% assign accent_weight = font_accent_parts[2] %}
+{% else %}
+{% assign accent_family = settings.font_accent_family %}
+{% assign accent_weight = 400 %}
+{% endif %}
+
+// Body Font
+$bodyFontStack: {{ base_family }};
+$baseFontSize: {{ settings.font_body_size }};
+
+// Additional body Font
+$additionalBodyFontStack: {{ additional_family }};
+$additionalBodyFontWeight: {{ additional_weight }};
+
+// Page header Font
+$headerPageFontStack: {{ header_page_family }};
+$headerPageFontWeight: {{ header_page_weight }};
+$headerPageFontSize: {{ settings.font_header_page_size }};
+
+// Text header Font
+$headerTextFontStack: {{ header_family }};
+$headerTextFontWeight: {{ header_weight }};
+$headerBaseTextFontSize: {{ settings.font_header_size }};
+
+// Accent Font
+$accentFontStack: {{ accent_family }};

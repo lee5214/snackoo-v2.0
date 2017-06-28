@@ -1,5 +1,12 @@
 {%- comment -%}
 -----------------------------------------------------
+General styles
+-----------------------------------------------------
+{%- endcomment -%}
+{{ "css.global.scss.css" | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+-----------------------------------------------------
 Index page and Product page
 -----------------------------------------------------
 {%- endcomment -%}
@@ -7,10 +14,14 @@ Index page and Product page
   {{ "css.home.scss.css" | asset_url | stylesheet_tag }}
 {%- endif -%}
 
-{%- if template contains 'index' or template contains 'product' -%}
+{%- if template contains 'index' -%}
   {{ "css.dependency.scss.css" | asset_url | stylesheet_tag }}
 {%- endif -%}
 
+{%- if template contains 'product' -%}
+	{{ "css.dependency.scss.css" | asset_url | stylesheet_tag }}
+	{{ "css.product_boxed.scss.css" | asset_url | stylesheet_tag }}
+{%- endif -%}
 
 {%- comment -%}
 -----------------------------------------------------
@@ -31,13 +42,6 @@ Page about us and landing page
   {{ "css.dependency.scss.css" | asset_url | stylesheet_tag }}
   {{ "css.flipclock.css" | asset_url | stylesheet_tag }}
 {%- endif -%}
-
-{%- comment -%}
------------------------------------------------------
-General styles
------------------------------------------------------
-{%- endcomment -%}
-{{ "css.global.scss.css" | asset_url | stylesheet_tag }}
 
 {%- comment -%}
 -----------------------------------------------------

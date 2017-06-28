@@ -5,9 +5,10 @@ Snippet for toolbar with types of view and sorting options (collection page)
 
   <div class="page-description">
     <h1 class="heading--page">{{ collection.title }}</h1>
-    <h2 class="subheading--page-small"><em>{{ collection.products.size }} {{ 'collections.product_list.products_in_collection' | t }}</em></h2>
+    <h2 class="subheading--page-small"><em>{{ collection.all_products_count}} {{ 'collections.product_list.products_in_collection' | t }}</em></h2>
   </div>
 
+  {% comment %}
   <div class="collection__toolbar-views">
 
     <a class="grid-view" href="{{collection.url}}?view=grid">
@@ -24,7 +25,7 @@ Snippet for toolbar with types of view and sorting options (collection page)
         <span class="fallback-text">List view</span>
     </a>
   </div> <!-- end collection__toolbar-views -->
-
+  {% endcomment %}
 
   <div class="collection__filters">
     {% comment %}

@@ -600,7 +600,7 @@ body {
         }
         .form-wrapper {
           .form {
-            text-align: center;
+           // text-align: left;
           }
         }
 
@@ -842,18 +842,12 @@ body {
 
 //rating-star
 .spr-badge {
-  margin-bottom: 30px;
   text-align: center;
   .spr-icon {
+    color: #f06161;
     padding: 0 3px;
-    &.spr-icon-star {
-      color: #f3b562;
-      &:before {
-        font-size: 120%;
-      }
-    }
-    &.spr-icon-star-empty {
-      color: #d1cacc;
+    &.spr-icon-star,&.spr-icon-star-empty,&.spr-icon-star-half-alt {
+
       &:before {
         font-size: 100%;
       }
@@ -1312,3 +1306,4 @@ section.section--special-offer {
 
   }
 }
+

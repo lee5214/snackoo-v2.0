@@ -13,15 +13,13 @@
 		{% endcomment %}
 		{% capture product_namber %}{{ settings.collection_grid_product_number }}{% endcapture %}
 		{% paginate collection.products by product_namber %}
-
+		{%  include 'collection-toolbar'  %}
 		<div class="grid">
 			<div class="grid__item one-whole">
-
 				{%- if section.settings.shop_sidebar == '1' -%}
 					<div class="columns show-for-large-up sidebar-pos">
 						<div class="shop_sidebar wpb_widgetised_column">
 							<div id="secondary" class="widget-area" role="complementary">
-								{%  include 'collection-toolbar'  %}
 								{%- include 'shop-sidebar'-%}
 							</div>
 						</div>
@@ -138,10 +136,6 @@
 		"id": "shop_sidebar",
 		"label": "Sidebar Style",
 		"options": [
-		{
-		"value": "",
-		"label": "None"
-		},
 		{
 		"value": "1",
 		"label": "On Page"

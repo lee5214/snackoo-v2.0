@@ -173,7 +173,7 @@
     @include transition(background-color 310ms ease-in-out);
   }
 
-  .nav-list__item:hover {
+  &>.nav-list__item:hover {
     background-color: #5cfdee;
 
     .icon--plus-small:before,
@@ -746,7 +746,7 @@
   }
 
   .header--clear .nav-list {
-    background-color: $colorInverse;
+    background-color: transparent;//$colorInverse;
     @include transition(background-color 450ms cubic-bezier(0.50, 0.130, 0.5, 0.87));
   }
 

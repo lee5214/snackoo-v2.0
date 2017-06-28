@@ -1,0 +1,126 @@
+
+.product__desc {
+  .tab {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+    overflow: hidden;
+    outline: 1px solid transparent;
+
+    button {
+      width: 50%;
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      &:hover {
+        background-color: #a8e8e2;
+      }
+      &.active {
+        border-bottom: 1px solid gray;
+      }
+    }
+
+  }
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    //border: 1px solid #ccc;
+    border-top: none;
+    text-align: left;
+  }
+}
+
+@media (min-width: 769px) {
+  #container {
+    width: 944px;
+    margin: 0 auto;
+  }
+  .product__block {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    .carousel--product-gallery .carousel__navigation.swiper-pagination-clickable {
+      height: 100%;
+      display: block;
+      width: 56px;
+      left: 0;
+      top: -3px;
+      position: absolute;
+      z-index: 2;
+      background: white;
+      .swiper-pagination-bullet {
+        margin: 3px;
+        height: 50px;
+        width: 50px;
+        float: left;
+      }
+      .swiper-pagination-bullet-active {
+        background-color: transparent;
+        opacity: 1;
+        outline: 1px solid black;
+      }
+    }
+    .product__block-item {
+      //width: 50% !important;
+      min-width: 300px;
+      .swiper-container {
+        .swiper-wrapper {
+          .swiper-slide {
+            .img-holder {
+              height: 50vh !important;
+            }
+          }
+        }
+      }
+      .product__content {
+        padding: 0 0 0 20px;
+
+        .product__title {
+          font-size: 16px;
+          line-height: 20px;
+          padding-right: 20px;
+          display: block;
+          text-align: left !important;
+        }
+
+        .social-sharing--product {
+          width: 24px;
+          position: absolute;
+          right: 0;
+          top: 0;
+          background-color: transparent;
+          a {
+            margin-left: 0;
+            width: 20px;
+            height: 20px;
+            line-height: 24px;
+          }
+        }
+        .spr-badge {
+          text-align: left;
+        }
+        .product__info {
+          .form-wrapper .form__row {
+            text-align: left;
+            .form__field {
+              background-color: transparent;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.similar-product{
+  .product__title{
+    display: block;
+    height: 50px;
+    overflow: hidden;
+  }
+}

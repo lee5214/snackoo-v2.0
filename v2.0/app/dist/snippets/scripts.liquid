@@ -707,7 +707,7 @@
                 paginationClickable: true,
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
-                spaceBetween: 0,
+                spaceBetween: 20,
                 preventClicks: false,
                 slidesPerView: 4,
                 slidesPerGroup: 4,
@@ -759,16 +759,18 @@
 	 "product.boxed.liquid" template
 	 ---------------------------------------------------------
 	 */
-    if (document.querySelector('.carousel--product-gallery') && document.getElementById('product-boxed-variants')) {
+    if (document.querySelector('.carousel--product-gallery-productimg')){ //&& document.getElementById('product-boxed-variants')) {
 
         require(['swiper', 'productVariantsConverter', 'utils'], function (Swiper, ProductVariantsConverter, utils) {
 
-
+//            $(".swiper-pagination-bullet").hover(function(){
+//                $(this).trigger('click');
+//            });
 			/*
 			 Slider initialization
 			 */
             var DOM = utils.domFinder({
-                carouselContainer: '.carousel--product-gallery'
+                carouselContainer: '.carousel--product-gallery-productimg'
             });
 
             var imagesUrls = {{ image_urls | json }}; // image_urls - from product page
@@ -785,8 +787,8 @@
                 spaceBetween: 0,
                 pagination: '.carousel__navigation',
                 paginationClickable: true,
-                nextButton: '.swiper-button-next',
-                prevButton: '.swiper-button-prev',
+                nextButton: '.swiper-button-next-productimg',
+                prevButton: '.swiper-button-prev-productimg',
                 paginationBulletRender: function (index, className) {
                     if (firstLoad) {
                         return '<span class="' + className + '">' + '<img src="' + imagesUrlsArr[index] + '">' + '</span>';
