@@ -181,9 +181,9 @@
 								<div class="product__desc">
 									<div class="tab">
 										<button id="defaultOpen" class="tablinks "
-												onclick="openCity(event, 'Description')">Description
+												onclick="openSec(event, 'Description')">Description
 										</button>
-										<button class="tablinks " onclick="openCity(event, 'Details')">Details</button>
+										<button class="tablinks " onclick="openSec(event, 'Details')">Details</button>
 									</div>
 									{% assign content_html = product.description %}
 									{% include 'strip_html_tags' with content_html %}
@@ -207,7 +207,7 @@
 										{{ nutritional_value_text }}
 									</div>
 									<script>
-                                        function openCity(evt, cityName) {
+                                        function openSec(evt, secName) {
                                             // Declare all variables
                                             var i, tabcontent, tablinks;
                                             // Get all elements with class="tabcontent" and hide them
@@ -223,7 +223,7 @@
                                             }
 
                                             // Show the current tab, and add an "active" class to the button that opened the tab
-                                            document.getElementById(cityName).style.display = "block";
+                                            document.getElementById(secName).style.display = "block";
                                             evt.currentTarget.className += " active";
                                         }
                                         document.getElementById("defaultOpen").click();

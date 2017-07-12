@@ -877,7 +877,7 @@ body {
 
 .main-content {
   display: block;
-  margin-top:34px;
+  //margin-top:34px;
 }
 
 .currency-is-hide span.money,
@@ -1230,6 +1230,7 @@ th, td {
 }
 
 .grid--in-row {
+  width: 32%;
   margin-bottom: 72px;
   display: inline-block;
   vertical-align: top;
@@ -1926,7 +1927,7 @@ th, td {
 }
 
 .collection-wrapper {
-  margin: 0 -9px;
+  margin: 0;
   text-align: center;
 }
 
@@ -2430,7 +2431,7 @@ th, td {
 /* Shopping cart
 /* -------------------------------------------------------------------------- */
 .cart-wrapper {
-  background-color: $colorNeutral;
+  background-color: white;//$colorNeutral;
   height: 100%;
 
 }
@@ -4434,6 +4435,7 @@ th, td {
     border-radius: 50%;
     z-index: 2;
 
+    display:none;
     .product__price {
       margin-top: 26px;
       display: block;
@@ -4462,6 +4464,20 @@ th, td {
     background-color: $colorAccent;
     border-radius: 50%;
     z-index: 2;
+
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+    width:80px;
+    top:6px;
+    right:3px;
+    border-radius:0;
+    color:white;
+    background-color:#f74646;
+    height:40px;
+    line-height:40px;
   }
 
   .product__info {
@@ -4630,7 +4646,7 @@ th, td {
 
     .btn--submit {
       max-width: 280px;
-      margin: 10px;
+      margin: 10px 0;
     }
   }
 
@@ -14867,6 +14883,8 @@ th, td {
 /* Drawer Cart Styles */
 .drawer--cart .drawer__wrapper {
   background-color: $colorNeutral;
+  width: 100%;
+  max-width: 944px;
 }
 
 // Overlay

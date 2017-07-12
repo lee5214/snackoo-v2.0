@@ -1826,7 +1826,7 @@ th, td {
 /* Text links
 /* -------------------------------------------------------------------------- */
 .text-link--form {
-  color: lighten(desaturate(adjust-hue($colorPrimary, 10.2674), 3.8939), 32.9412);
+  color: red !important;//lighten(desaturate(adjust-hue($colorPrimary, 10.2674), 3.8939), 32.9412);
   text-transform: lowercase;
   @include transition(opacity 300ms ease-in-out);
 }
@@ -5668,21 +5668,35 @@ th, td {
   }
 
   .product__badge {
-    width: 60px;
-    height: 60px;
+    //width: 60px;
+    //height: 60px;
     display: block;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    //top: 20px;
+    //right: 20px;
     font-family: $additionalBodyFontStack;
     font-weight: bold;
     font-size: 14px;
-    line-height: 57px;
-    color: $colorTextBody;
+    //line-height: 57px;
+    //color: $colorTextBody;
     text-align: center;
-    background-color: $colorAccent;
-    border-radius: 50%;
+    //background-color: $colorAccent;
+    //border-radius: 50%;
     z-index: 2;
+
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+    width:80px;
+    top:2px;
+    right:20px;
+    border-radius:0;
+    color:white;
+    background-color:#f74646;
+    height:40px;
+    line-height:40px;
   }
 
   .product__info {

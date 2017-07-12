@@ -877,7 +877,7 @@ body {
 
 .main-content {
   display: block;
-  margin-top:34px;
+  //margin-top:34px;
 }
 
 .currency-is-hide span.money,
@@ -1230,6 +1230,7 @@ th, td {
 }
 
 .grid--in-row {
+  width: 32%;
   margin-bottom: 72px;
   display: inline-block;
   vertical-align: top;
@@ -1926,7 +1927,7 @@ th, td {
 }
 
 .collection-wrapper {
-  margin: 0 -9px;
+  margin: 0;
   text-align: center;
 }
 
@@ -2430,7 +2431,7 @@ th, td {
 /* Shopping cart
 /* -------------------------------------------------------------------------- */
 .cart-wrapper {
-  background-color: $colorNeutral;
+  background-color: white;//$colorNeutral;
   height: 100%;
 
 }
@@ -4434,6 +4435,7 @@ th, td {
     border-radius: 50%;
     z-index: 2;
 
+    display:none;
     .product__price {
       margin-top: 26px;
       display: block;
@@ -4462,6 +4464,20 @@ th, td {
     background-color: $colorAccent;
     border-radius: 50%;
     z-index: 2;
+
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -ms-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+    width:80px;
+    top:6px;
+    right:3px;
+    border-radius:0;
+    color:white;
+    background-color:#f74646;
+    height:40px;
+    line-height:40px;
   }
 
   .product__info {
@@ -4630,7 +4646,7 @@ th, td {
 
     .btn--submit {
       max-width: 280px;
-      margin: 10px;
+      margin: 10px 0;
     }
   }
 
@@ -14867,6 +14883,8 @@ th, td {
 /* Drawer Cart Styles */
 .drawer--cart .drawer__wrapper {
   background-color: $colorNeutral;
+  width: 100%;
+  max-width: 944px;
 }
 
 // Overlay
@@ -15945,6 +15963,9 @@ $worm_color_primary: #f74646;
 //header white border
 
 //for both pc and mobile
+*{
+  box-sizing: border-box;
+}
 body {
   //max-width: 1200px;
   margin: 0 auto;
@@ -15971,7 +15992,7 @@ body {
   .shopify-section {
     //max-width: calc(100vw - 66px);
     //margin-bottom: 100px;
-    margin: 40px auto;
+    margin-bottom: 40px;
     //max-width: 1400px;
   }
   #shopify-section-1489396154366{
@@ -17126,7 +17147,7 @@ footer {
 
 //sold out style
 .product .product--sold-out:before {
-  transform: translate3d(10%, -74%, 0) rotate(-10deg);
+  transform: translate3d(0, 0, 0) rotate(0deg);
 }
 
 //
@@ -17423,7 +17444,8 @@ section.section--special-offer {
     @include transition(background-color 310ms ease-in-out);
   }
 
-  &>.nav-list__item:hover {
+  .nav-list__item:hover {
+    color: white;
     background-color: #5cfdee;
 
     .icon--plus-small:before,
@@ -17609,7 +17631,7 @@ section.section--special-offer {
       }
 
       & > .nav-list__dropdown {
-        padding: 40px 60px;
+        padding: 4px 6px;
         width: 100%;
         max-width: 1000px;
         display: block;
@@ -17730,7 +17752,7 @@ section.section--special-offer {
     .nav-list__item .icon--plus-small,
     .nav-list__item--login.has-dropdown .nav-list__link:before,
     .nav-list__item--login.has-dropdown .nav-list__link:after,
-    .nav-list__item--login.has-dropdown:hover .nav-list__dropdown,
+
     .nav-list__item.has-dropdown:hover > .nav-list__dropdown .nav-list__link:before,
     .nav-list__item.has-dropdown:hover > .nav-list__dropdown .nav-list__link:after,
     .nav-list__item--login.has-dropdown .icon--plus-small {
@@ -17875,6 +17897,8 @@ section.section--special-offer {
   .nav-list .has-dropdown.show-dropdown:not(.active) > .nav-list__link {
     color: $colorTextBody;
   }
+
+
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -18036,6 +18060,54 @@ section.section--special-offer {
   }
 }
 
+
+/*
+customer account
+*/
+
+.nav-list__item:hover .nav-list__dropdown{
+  visibility: visible;
+  //color: green;
+  width: 100%;
+  min-width: 200px;
+  background: white;
+}
+
+.header-top-banner-section {
+  right: 0;
+  //margin-left: calc(100vw / 2 - 944px / 2 + 230px);
+  //width: 200px;
+  height: 100%;
+  //overflow: hidden;
+  padding-top:0;
+  .nav-list__item{
+    //background:red;
+    //width: 100px;
+    height: 100%;
+    float: right;
+
+    .nav-list__link{
+      font-size: 12px;
+      margin: 10px auto;
+      padding:0;
+      display: block;
+      text-transform: capitalize;
+    }
+    .nav-list__dropdown{
+      .nav-list__item{
+        .login-form{
+          .form-wrapper{
+            padding: 0;
+
+            .text-link,.form__info{
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 
 footer{

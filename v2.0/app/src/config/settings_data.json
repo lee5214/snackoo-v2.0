@@ -30,7 +30,7 @@
     "popup_bg": "",
     "popup_heading": "A Spring Preview Surprise",
     "popup_discount_offer": "40% off",
-    "popup_discount_code": "foodlysurprise",
+    "popup_discount_code": "Snackoosurprise",
     "popup_discount_info": "use the code above for spring<br>collection purchase",
     "popup_link": "",
     "popup_link_text": "",
@@ -58,11 +58,11 @@
     "about_us_heading": "",
     "about_us_subheading_overlap": "",
     "about_us_blog": "",
-    "social_facebook_link": "https:\/\/www.facebook.com\/olia.gozha",
-    "social_twitter_link": "https:\/\/twitter.com\/OliaGozha",
-    "social_pinterest_link": "https:\/\/www.pinterest.com\/oliagozha",
-    "social_instagram_link": "https:\/\/www.instagram.com\/foodlystore",
-    "social_youtube_link": "https:\/\/www.youtube.com\/user\/shopify",
+    "social_facebook_link": "https:\/\/www.facebook.com\/snackoo",
+    "social_twitter_link": "https:\/\/twitter.com\/snackoo",
+    "social_pinterest_link": "https:\/\/www.pinterest.com\/snackoo",
+    "social_instagram_link": "https:\/\/www.instagram.com\/snackoo",
+    "social_youtube_link": "https:\/\/www.youtube.com\/user\/snackoo",
     "social_tumblr_link": "http:\/\/shopify.tumblr.com\/",
     "footer_instagram_user_id": "1735276109",
     "footer_instagram_access_token": "1735276109.1677ed0.f28e471db7bc47dfb72114959c536d00",
@@ -70,9 +70,9 @@
     "collection_list_product_number": "48",
     "collection_product_badge": "badge",
     "collection_add_cart_thumb": true,
-    "collection_for_sorting_enable": false,
+    "collection_for_sorting_enable": true,
     "collection_for_sorting": "State, Any states, Fresh, Frozen, Dried, Liquid",
-    "collection_sort_tags_enable": false,
+    "collection_sort_tags_enable": true,
     "collection_sort_tags": "Type, Any types, Fruit, Vegetables, Herbals, Condiments",
     "collection_sort_default_enable": true,
     "article_share_btns_anable": true,
@@ -91,19 +91,19 @@
     "contact_heading_em": "Our",
     "contact_heading": "doors are always open",
     "contact_short_hours_enable": true,
-    "contact_short_hours": "09.00-17.00 (PST) MON - FRI",
+    "contact_short_hours": "09.00-18.00 (PST) MON - FRI",
     "contact_short_email_enable": true,
-    "contact_short_email": "contact@foodly.com",
+    "contact_short_email": "info@Snackoo.com",
     "contact_short_phone_enable": true,
-    "contact_short_phone": "912-823-5448",
+    "contact_short_phone": "none",
     "contact_google_api": "",
     "contact_block1_enable": true,
-    "contact_block1": "Foodly Inc<br>\r\n10 Brandt Street <br>\r\nSteinbach<br> \r\nManitoba, R5G 1Y2<br>\r\nCanada",
+    "contact_block1": "Snackoo Inc<br>\r\n10 Brandt Street <br>\r\nSteinbach<br> \r\nManitoba, R5G 1Y2<br>\r\nCanada",
     "contact_block1_lat": "49.531",
     "contact_block1_lng": "-96.689",
     "contact_block1_zoom": "16",
     "contact_block2_enable": true,
-    "contact_block2": "Foodly Inc<br>\r\nSuite 109<br>\r\n273 – 3000 High Way<br>\r\nWhistler, BC, V0N 2B5<br>\r\nCanada",
+    "contact_block2": "Snackoo Inc<br>\r\nSuite 109<br>\r\n273 – 3000 High Way<br>\r\nWhistler, BC, V0N 2B5<br>\r\nCanada",
     "contact_block2_lat": "50.087",
     "contact_block2_lng": "-122.986",
     "contact_block2_zoom": "16",
@@ -151,9 +151,9 @@
     "gift_card_email": "mail@mail.com",
     "info_btn_enable": true,
     "info_btn_heading": "Don’t miss a chance",
-    "info_btn_news": "<div class=\"coupon-code\">20fp20fp<\/div> use the code above to get 20% discount for first purchase at Foodly store",
+    "info_btn_news": "<div class=\"coupon-code\">20fp20fp<\/div> use the code above to get 20% discount for first purchase at Snackoo store",
     "info_btn_text_link": "Create your Account",
-    "info_btn_url_link": "http:\/\/foodly-store.myshopify.com\/account\/register",
+    "info_btn_url_link": "http:\/\/Snackoo-store.myshopify.com\/account\/register",
     "info_btn_cookie_enable": true,
     "info_btn_cookie_unique": "01",
     "info_btn_pulse_enable": true,
@@ -191,7 +191,7 @@
     "checkout_error_color": "#fa9696",
     "nav_brand": "shopify:\/\/shop_images\/1_grande_c09d2c7c-ab4d-4b98-8de6-16bfe1a817fc.png",
     "footer_instagram_client": "ba61a580286a4ae9a340f12c709c6bb2",
-    "footer_instagram_account": "foodlystore",
+    "footer_instagram_account": "Snackoostore",
     "blog_sorting_api_key": "",
     "blog_sorting_api_password": "",
     "lookbook_blog": "",
@@ -216,7 +216,7 @@
     "pick_products_subheading": "pick direction you’d like to go further and recieve the list of product options",
     "homepage_subscribe_form_enable": true,
     "homepage_subscribe_form_heading_html": "Business<br> Values<br> Attitude",
-    "homepage_subscribe_form_subheading": "Join folks at Foodly family to get the latest news and the best offers",
+    "homepage_subscribe_form_subheading": "Join folks at Snackoo family to get the latest news and the best offers",
     "homepage_subscribe_block_subheading_overlap": "Family",
     "homepage_special_1_enable": true,
     "homepage_special_1_heading": "Start your day",
@@ -248,7 +248,7 @@
     "homepage_recipes_enable": true,
     "homepage_recipes_blog": "recipes-8",
     "homepage_recipes_heading": "Picked recipes",
-    "homepage_recipes_subheading": "with love from the bottom of Foodly heart",
+    "homepage_recipes_subheading": "with love from the bottom of Snackoo heart",
     "homepage_recipes_subheading_overlap": "Hand",
     "color_footer_bg": "#f5f4f4",
     "footer_img_enable": false,
@@ -298,11 +298,11 @@
     "footer_menu_heading": "More info",
     "footer_quicklinks_linklist": "footer",
     "footer_second_menu_enable": true,
-    "footer_second_menu_heading": "Foodly family",
+    "footer_second_menu_heading": "Snackoo family",
     "footer_second_menu": "footer-additional",
     "footer_address_enable": false,
     "footer_address_heading": "Contact info",
-    "footer_address_text": "<ul>\r\n<li><i class=\"fa fa-envelope\"><\/i><a href=\"mailto:contact@foodly.com\">contact@foodly.com<\/a>\r\n<\/li>\r\n<li><i class=\"fa fa-mobile\"><\/i>\r\n912-823-5448\r\n<\/li>\r\n<li><i class=\"fa fa-map-marker\"><\/i>\r\n\r\nFoodly Inc Suite\r\n109 273 – 3000 High Way\r\nWhistler, BC, V0N 2B5 \r\n<\/li>\r\n<\/ul>",
+    "footer_address_text": "<ul>\r\n<li><i class=\"fa fa-envelope\"><\/i><a href=\"mailto:contact@Snackoo.com\">contact@Snackoo.com<\/a>\r\n<\/li>\r\n<li><i class=\"fa fa-mobile\"><\/i>\r\n912-823-5448\r\n<\/li>\r\n<li><i class=\"fa fa-map-marker\"><\/i>\r\n\r\nSnackoo Inc Suite\r\n109 273 – 3000 High Way\r\nWhistler, BC, V0N 2B5 \r\n<\/li>\r\n<\/ul>",
     "footer_show_methods_of_payment": true,
     "footer_social_enable": true,
     "footer_social_heading": "Follow Us",
@@ -353,7 +353,7 @@
           "1477729374025": {
             "type": "menu",
             "settings": {
-              "title": "Foodly Family",
+              "title": "Snackoo Family",
               "linklist": ""
             }
           },
@@ -384,7 +384,7 @@
           "instagram_heading": "Instagram",
           "instagram_subheading": "let’s have a look what is behind the scenes",
           "subscribe_heading": "Get notified",
-          "subscribe_subheading": "joining newsletter from Foodly to get the latest news and offers",
+          "subscribe_subheading": "joining newsletter from Snackoo to get the latest news and offers",
           "copyright_link": "http:\/\/themeforest.net\/user\/congruityhub\/portfolio",
           "copyright_link_text": ""
         }
@@ -402,283 +402,9 @@
           "transparent_home_enable": true,
           "color_header_bg": "#ffffff"
         }
-      },
-      "1489396154366": {
-        "type": "slideshow",
-        "blocks": {
-          "1489396213649": {
-            "type": "slide",
-            "settings": {
-              "heading": "Paella or Pasta?",
-              "heading_add": "",
-              "subheading": "you’ll need this sweet pepper for both",
-              "subheading_add": "",
-              "link": "",
-              "price": "",
-              "price_desc": "",
-              "price_bage_positionXY": "",
-              "image": "shopify:\/\/shop_images\/21-03.png",
-              "image_thumb": "shopify:\/\/shop_images\/22_-2-06.png"
-            }
-          },
-          "1489396165126": {
-            "type": "slide",
-            "settings": {
-              "heading": "Tomato season",
-              "heading_add": "",
-              "subheading": "nutritious  delicious",
-              "subheading_add": "",
-              "link": "",
-              "price": "",
-              "price_desc": "",
-              "price_bage_positionXY": "",
-              "image": "shopify:\/\/shop_images\/2-03.png",
-              "image_thumb": "shopify:\/\/shop_images\/333-06.png"
-            }
-          },
-          "1489396243275": {
-            "type": "slide",
-            "settings": {
-              "heading": "Apple Pie?",
-              "heading_add": "Yes, <strong>Please<\/strong>!",
-              "subheading": "of Gala Cultivar",
-              "subheading_add": "Mmmmm...",
-              "link": "",
-              "price": "",
-              "price_desc": "",
-              "price_bage_positionXY": "",
-              "image": "shopify:\/\/shop_images\/2-03_c2db8a07-2b9e-429b-ac7e-f922423c4582.png",
-              "image_thumb": ""
-            }
-          }
-        },
-        "block_order": [
-          "1489396213649",
-          "1489396165126",
-          "1489396243275"
-        ],
-        "settings": {
-          "slideshow_effect": "fade",
-          "slideshow_autoplay": false,
-          "slideshow_time_animation": "7000",
-          "slideshow_zoom": true,
-          "position_y": "0"
-        }
-      },
-      "products_grid": {
-        "type": "products_grid",
-        "settings": {
-          "products_grid": "",
-          "autoplay": ""
-        }
-      },
-      "1493836890840": {
-        "type": "section-products_grid",
-        "settings": {
-          "section-products_grid": "chip",
-          "autoplay": "",
-          "sec_subtitle": "New Products"
-        }
-      },
-      "1493842994633": {
-        "type": "section-new_brand",
-        "blocks": {
-          "1493843006754": {
-            "type": "slide",
-            "settings": {
-              "heading": "Glice rocks",
-              "heading_add": "Yes, <strong>Pocky<\/strong>!",
-              "subheading": "chocolate stickers",
-              "subheading_add": "Mmmmm...",
-              "link": "",
-              "price": "$3.05",
-              "price_desc": "per box",
-              "price_bage_positionXY": "50% 50%",
-              "image": "",
-              "image_thumb": ""
-            }
-          },
-          "1493843264615": {
-            "type": "slide",
-            "settings": {
-              "heading": "Luo Shi Fen",
-              "heading_add": "<strong>Spicy but tasty<\/strong>!",
-              "subheading": "the top brand in China",
-              "subheading_add": "Mmmmm...",
-              "link": "",
-              "price": "$3.05",
-              "price_desc": "start point",
-              "price_bage_positionXY": "50% 50%",
-              "image": "",
-              "image_thumb": ""
-            }
-          },
-          "1493937409048": {
-            "type": "slide",
-            "settings": {
-              "heading": "Tomato season",
-              "heading_add": "Yes, <strong>Please<\/strong>!",
-              "subheading": "nutritious  delicious",
-              "subheading_add": "Mmmmm...",
-              "link": "",
-              "price": "$3.05",
-              "price_desc": "start point",
-              "price_bage_positionXY": "50% 50%",
-              "image": "",
-              "image_thumb": ""
-            }
-          },
-          "1493937443826": {
-            "type": "slide",
-            "settings": {
-              "heading": "Tomato season",
-              "heading_add": "Yes, <strong>Please<\/strong>!",
-              "subheading": "nutritious  delicious",
-              "subheading_add": "Mmmmm...",
-              "link": "",
-              "price": "$3.05",
-              "price_desc": "start point",
-              "price_bage_positionXY": "50% 50%",
-              "image": "",
-              "image_thumb": ""
-            }
-          },
-          "1493939685243": {
-            "type": "slide",
-            "settings": {
-              "heading": "Tomato season",
-              "heading_add": "Yes, <strong>Please<\/strong>!",
-              "subheading": "nutritious  delicious",
-              "subheading_add": "Mmmmm...",
-              "link": "",
-              "price": "$3.05",
-              "price_desc": "start point",
-              "price_bage_positionXY": "50% 50%",
-              "image": "",
-              "image_thumb": ""
-            }
-          },
-          "1493939686364": {
-            "type": "slide",
-            "settings": {
-              "heading": "Tomato season",
-              "heading_add": "Yes, <strong>Please<\/strong>!",
-              "subheading": "nutritious  delicious",
-              "subheading_add": "Mmmmm...",
-              "link": "",
-              "price": "$3.05",
-              "price_desc": "start point",
-              "price_bage_positionXY": "50% 50%",
-              "image": "",
-              "image_thumb": ""
-            }
-          }
-        },
-        "block_order": [
-          "1493843006754",
-          "1493843264615",
-          "1493937409048",
-          "1493937443826",
-          "1493939685243",
-          "1493939686364"
-        ],
-        "settings": {
-          "sec_subtitle2": "Top Brands",
-          "section-new_brand": "fade",
-          "section-new_brand_autoplay": false,
-          "section-new_brand_time_animation": "7000",
-          "section-new_brand_zoom": true,
-          "position_y": "2"
-        }
-      },
-      "1493949836511": {
-        "type": "featured-carousel",
-        "settings": {
-          "featured_collection": "chip",
-          "autoplay": "0"
-        }
-      },
-      "1494024265503": {
-        "type": "feature-collections",
-        "blocks": {
-          "1494024265503-0": {
-            "type": "collection",
-            "settings": {
-              "collection": "chip"
-            }
-          },
-          "1494024265503-1": {
-            "type": "collection",
-            "settings": {
-              "collection": ""
-            }
-          },
-          "1494024265503-2": {
-            "type": "collection",
-            "settings": {
-              "collection": ""
-            }
-          }
-        },
-        "block_order": [
-          "1494024265503-0",
-          "1494024265503-1",
-          "1494024265503-2"
-        ],
-        "settings": {}
-      },
-      "1494024345121": {
-        "type": "offers-product-02",
-        "settings": {
-          "product": ""
-        }
-      },
-      "template-collection": {
-        "type": "template-collection",
-        "blocks": {
-          "1495751397313": {
-            "type": "tags",
-            "settings": {
-              "heading": "Product Tags"
-            }
-          },
-          "1495751389528": {
-            "type": "collections",
-            "settings": {
-              "heading": "Categories"
-            }
-          },
-          "1495819890917": {
-            "type": "products",
-            "settings": {
-              "heading": "Featured Products",
-              "collection": "royce",
-              "limit": "3"
-            }
-          }
-        },
-        "block_order": [
-          "1495751397313",
-          "1495751389528",
-          "1495819890917"
-        ],
-        "settings": {
-          "shop_sidebar": "1",
-          "shop_pagination": "2",
-          "shop_products_row": "4",
-          "shop_rows_page": "2",
-          "shop_description": "1",
-          "shop_image": ""
-        }
       }
     },
     "content_for_index": [
-      "1489396154366",
-      "1493836890840",
-      "1493949836511",
-      "1494024265503",
-      "1494024345121",
-      "1493842994633"
     ]
   }
 }

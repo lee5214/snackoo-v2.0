@@ -1,6 +1,8 @@
 .collection__filters{
-  float: right;
+  float: left;
+  margin-left: 25%;
   .dropdown{
+    margin-left: 0;
     .dropdown__button{
       border: 1px solid #a8e8e2;
       background: white;
@@ -27,11 +29,27 @@
   .collection-wrapper{
     width: 75% !important;
     min-width: 400px;
+    min-height: 400px;
+    height: calc(100vh - 160px);
     //height: 60vh;
     overflow: scroll;
     .grid--in-row{
-      width: 32%;
-      min-width: 200px;
+      //width: 32%;
+      //min-width: 200px;
+
+      .product__visuals{
+        overflow: hidden;
+        border: 1px solid;
+        &:hover {
+          padding: 1px;
+          border: none !important;
+        }
+        .product__link{
+
+
+
+        }
+      }
     }
   }
 }

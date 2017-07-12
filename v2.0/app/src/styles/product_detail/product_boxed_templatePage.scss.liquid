@@ -6,7 +6,7 @@
     margin-top: 5px;
     overflow: hidden;
     outline: 1px solid transparent;
-
+    background-color: #e3fffd;
     button {
       width: 50%;
       background-color: inherit;
@@ -17,17 +17,18 @@
       padding: 14px 16px;
       transition: 0.3s;
       &:hover {
-        background-color: #a8e8e2;
       }
       &.active {
-        border-bottom: 1px solid gray;
+        background-color: #a8e8e2;
+        color: white;
+
       }
     }
 
   }
   .tabcontent {
     display: none;
-    padding: 6px 12px;
+    padding: 6px 0;
     //border: 1px solid #ccc;
     border-top: none;
     text-align: left;
@@ -47,7 +48,7 @@
       height: 100%;
       display: block;
       width: 56px;
-      left: 0;
+      left: -2px;
       top: -3px;
       position: absolute;
       z-index: 2;
@@ -69,6 +70,7 @@
       min-width: 300px;
       .swiper-container {
         .swiper-wrapper {
+          margin-left: 60px;
           .swiper-slide {
             .img-holder {
               height: 50vh !important;
@@ -104,12 +106,19 @@
           text-align: left;
         }
         .product__info {
-          .form-wrapper .form__row {
-            text-align: left;
-            .form__field {
-              background-color: transparent;
+          .form-wrapper {
+            .form {
+              &.form--default{
+                margin: 50px auto 20px;
+              }
+              .form__row {
+                text-align: left;
+                .form__field {
+                  background-color: transparent;
+                  margin-bottom: 0;
+                }
+              }
             }
-
           }
         }
       }
@@ -117,8 +126,8 @@
   }
 }
 
-.similar-product{
-  .product__title{
+.similar-product {
+  .product__title {
     display: block;
     height: 50px;
     overflow: hidden;
