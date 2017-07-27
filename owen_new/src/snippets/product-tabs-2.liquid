@@ -1,0 +1,85 @@
+<div class="">
+	<div class="tabaccordion">
+		<div class="container">
+			<div class="product__desc">
+				<div class="tab row">
+					<div class="col-md-6">
+						<button id="defaultOpen" class="tablinks active"
+								onclick="openSec(event, 'Description')">Description
+						</button>
+					</div>
+					<div class="col-md-6">
+						<button class="tablinks " onclick="openSec(event, 'Details')">Details</button>
+					</div>
+				</div>
+				{% assign content_html = product.description %}
+				{% include 'strip_html_tags' with content_html %}
+
+				{% assign split = '--split--' %}
+				{% if content contains split %}
+					{% assign description_text = content | split: '--split--' | first %}
+					{% assign nutritional_value_text = content | split: '--split--' | last %}
+				{% else %}
+					{% assign description_text = content %}
+				{% endif %}
+
+				{% comment %}
+				Product decription
+				{% endcomment %}
+
+				<div id="Description" class="tabcontent">
+					{{ description_text }}
+				</div>
+				<div id="Details" class="tabcontent">
+					{{ nutritional_value_text }}
+				</div>
+				<script>
+                    function openSec(evt, secName) {
+                        // Declare all variables
+                        var i, tabcontent, tablinks;
+                        // Get all elements with class="tabcontent" and hide them
+                        tabcontent = document.getElementsByClassName("tabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+
+                        // Get all elements with class="tablinks" and remove the class "active"
+                        tablinks = document.getElementsByClassName("tablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+
+                        // Show the current tab, and add an "active" class to the button that opened the tab
+                        document.getElementById(secName).style.display = "block";
+                        evt.currentTarget.className += " active";
+                    }
+                    document.getElementById("defaultOpen").click();
+				</script>
+
+				{% comment %}
+				{% assign content_html = product.description %}
+				{% include 'strip_html_tags' with content_html %}
+
+				{% assign split_nutritional = '[Nutritional value]' %}
+				{% if content contains split_nutritional %}
+					{% assign description_text = content | split: split_nutritional | first %}
+					{% assign nutritional_value_text = content | split: split_nutritional | last %}
+				{% endif %}
+
+				{% comment %}
+				Product decription
+				{% endcomment %}
+				{% if settings.product_description_enable %}
+					<div itemprop="description" class="rte product__desc-content">
+						{% if description_text != blank %}
+							{{ description_text }}
+						{% else %}
+							{{ product.description }}
+						{% endif %}
+					</div>
+				{% endif %}
+				{% endcomment %}
+			</div>
+		</div>
+	</div>
+</div>
