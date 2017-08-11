@@ -15,23 +15,19 @@
 				{% assign content_html = product.description %}
 				{% include 'strip_html_tags' with content_html %}
 
-				{% assign split = '--split--' %}
+
+				{% assign split = '|[config]|' %}
 				{% if content contains split %}
-					{% assign description_text = content | split: '--split--' | first %}
-					{% assign nutritional_value_text = content | split: '--split--' | last %}
+					{% assign description_text = product.description | split:"[config]" | first  | split:'[description_text]' |last | split:"[/description_text]" | first } %}
+					{% assign detail_text = product.description | split:"[config]" | first  | split:'[details_text]' |last | split:"[/details_text]" | first } %}
 				{% else %}
 					{% assign description_text = content %}
 				{% endif %}
-
-				{% comment %}
-				Product decription
-				{% endcomment %}
-
 				<div id="Description" class="tabcontent">
 					{{ description_text }}
 				</div>
 				<div id="Details" class="tabcontent">
-					{{ nutritional_value_text }}
+					{{ detail_text }}
 				</div>
 				<script>
                     function openSec(evt, secName) {
@@ -63,7 +59,7 @@
 				{% assign split_nutritional = '[Nutritional value]' %}
 				{% if content contains split_nutritional %}
 					{% assign description_text = content | split: split_nutritional | first %}
-					{% assign nutritional_value_text = content | split: split_nutritional | last %}
+					{% assign detail_text = content | split: split_nutritional | last %}
 				{% endif %}
 
 				{% comment %}
